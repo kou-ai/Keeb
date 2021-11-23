@@ -18,7 +18,7 @@ class LandingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLandingBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
 
         var bundle = intent.extras
         var usernameBundle = bundle!!.getString("username_bundle")
@@ -27,7 +27,7 @@ class LandingActivity : AppCompatActivity() {
         Log.i("Landing Activity", "Username from Bundle: $usernameBundle")
         Log.i("Landing Activity", "Username from Extra: $usernameExtra")
 
-        binding!!.etMessage.text = usernameBundle
+        binding.etMessage.text = usernameBundle
 
         val navView: BottomNavigationView = binding.navView
 

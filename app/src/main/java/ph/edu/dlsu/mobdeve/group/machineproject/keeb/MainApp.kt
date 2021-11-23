@@ -33,15 +33,15 @@ class MainApp : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            var gotoLandingActivity = Intent(applicationContext, LandingActivity::class.java)
+            var gotoForumActivity = Intent(applicationContext, ForumActivity::class.java)
 
             var bundle = Bundle()
             bundle.putString("username", et_username!!.text.toString())
 
-            gotoLandingActivity.putExtras(bundle)
-            gotoLandingActivity.putExtra("username", et_username!!.text.toString())
+            gotoForumActivity.putExtras(bundle)
+            gotoForumActivity.putExtra("username", et_username!!.text.toString())
 
-            startActivity(gotoLandingActivity)
+            startActivity(gotoForumActivity)
             finish()
         }
     }
