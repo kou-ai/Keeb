@@ -11,7 +11,7 @@ import java.util.Random
 
 
 var btn_generate: Button? = null
-var tv_switches: TextView? = null
+lateinit var tv_switches: TextView
 var generated_image: ImageView? = null
 
 class Generator : AppCompatActivity() {
@@ -26,20 +26,27 @@ class Generator : AppCompatActivity() {
 
     btn_submit!!.setOnClickListener {
         val rnds = (0..10).random()
+
+        tv_switches.setText(rnds.toString())
+
         Log.i(
             "Generator",
             "Keyboard: $rnds"
         )
-        
+
         var gotoGenerator = Intent(applicationContext, Generator::class.java)
 
         var bundle = Bundle()
-        bundle.putString("keyboard", rnds.toString())
+        bundle.putString("keyboard", tv_switches.toString())
 
         gotoGenerator.putExtras(bundle)
-        gotoGenerator.putExtra("keyboard", rnds.toString())
+        gotoGenerator.putExtra("keyboard", tv_switches.toString())
+
+
+
 
         startActivity(gotoGenerator)
+
         finish()
         }
     }
