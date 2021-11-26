@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="ph.edu.dlsu.mobdeve.group.machineproject.keeb.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_generator"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="ph.edu.dlsu.mobdeve.group.machineproject.keeb.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_creator"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

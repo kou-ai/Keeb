@@ -2,6 +2,6 @@
     <string name="app_name">Keeb</string>
     <string name="title_activity_landing">LandingActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_generator">Generator</string>
+    <string name="title_creator">Keycap Creator</string>
 </resources>

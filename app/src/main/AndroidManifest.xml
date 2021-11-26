@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keeb">
         <activity
+            android:name=".Generator"
+            android:exported="false" />
+        <activity
             android:name=".ForumActivity"
             android:exported="false" />
         <activity
