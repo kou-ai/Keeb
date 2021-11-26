@@ -24,7 +24,7 @@ class Generator : AppCompatActivity() {
     tv_switches = findViewById(R.id.tv_switches)
     generated_image = findViewById(R.id.generated_image)
 
-    btn_submit!!.setOnClickListener {
+    btn_generate!!.setOnClickListener {
         val rnds = (0..10).random()
 
         tv_switches.setText(rnds.toString())
@@ -33,21 +33,6 @@ class Generator : AppCompatActivity() {
             "Generator",
             "Keyboard: $rnds"
         )
-
-        var gotoGenerator = Intent(applicationContext, Generator::class.java)
-
-        var bundle = Bundle()
-        bundle.putString("keyboard", tv_switches.toString())
-
-        gotoGenerator.putExtras(bundle)
-        gotoGenerator.putExtra("keyboard", tv_switches.toString())
-
-
-
-
-        startActivity(gotoGenerator)
-
-        finish()
         }
     }
 }
