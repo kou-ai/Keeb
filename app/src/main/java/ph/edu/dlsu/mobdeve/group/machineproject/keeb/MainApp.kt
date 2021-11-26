@@ -33,7 +33,7 @@ class MainApp : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            var gotoForumActivity = Intent(applicationContext, ForumActivity::class.java)
+            var gotoForumActivity = Intent(applicationContext, LandingActivity::class.java)
 
             var bundle = Bundle()
             bundle.putString("username", et_username!!.text.toString())
