@@ -14,9 +14,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnAdd!!.setOnClickListener { view ->
+        btnAdd?.setOnClickListener { view ->
             addRecord()
         }
+
+        etName = findViewById(R.id.etName)
+        etEmailId = findViewById(R.id.etEmailId)
+        btnAdd = findViewById(R.id.btnAdd)
     }
 
     //Method for saving the employee records in database
