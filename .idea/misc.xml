@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/drawable/circle.xml" value="1.3821428571428571" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/drawable/img.xml" value="0.35333333333333333" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/activity_creator.xml" value="0.30027173913043476" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/activity_generator.xml" value="0.15579710144927536" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/activity_landing.xml" value="0.209375" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/activity_main_app.xml" value="0.18" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/activity_profile.xml" value="0.30027173913043476" />
+        <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/creator_activity.xml" value="0.30027173913043476" />
         <entry key="..\:/Users/Miguel/AndroidStudioProjects/Keeb/app/src/main/res/layout/forum.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/marti/Documents/GitHub/Keeb/app/src/main/res/layout/activity_generator.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/marti/Documents/GitHub/Keeb/app/src/main/res/layout/activity_landing.xml" value="0.2" />
