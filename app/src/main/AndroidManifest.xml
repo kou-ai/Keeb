@@ -10,22 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keeb">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Generator"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ForumActivity"
             android:exported="false" />
         <activity
             android:name=".MainApp"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
