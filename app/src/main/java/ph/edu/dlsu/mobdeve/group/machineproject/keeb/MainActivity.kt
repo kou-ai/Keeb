@@ -53,5 +53,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun getItemsList(): ArrayList<EmpModelClass> {
+        // create the instance of Database Handler class
+        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+        // calling the viewEmployee method of DatabaseHandler class to read the records
+        val empList: ArrayList<EmpModelClass> = databaseHandler.viewEmployee()
 
+        return empList
+    }
 }
