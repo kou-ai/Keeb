@@ -1,9 +1,14 @@
 package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.provider.Settings.Global.getString
+import androidx.core.content.res.TypedArrayUtils.getString
 
 //creating the database logic, extending the SQLiteOpenHelper base class
 class DatabaseHandler(context: Context) :
@@ -47,5 +52,38 @@ class DatabaseHandler(context: Context) :
 
         db.close() // Closing database connection
         return success
+    }
+
+    // Method to read the records from database in form of ArrayList
+    @SuppressLint("Range")
+    fun viewEmployee (): ArrayList<EmpModelClass> {
+        val empList: ArrayList<EmpModelClass> = ArrayList<EmpModelClass>()
+        //Query to select all the records from the table.
+        val selectQuery = "SELECT * FROM STABLE CONTACTS"
+        val db = this.readableDatabase
+        // Cursor is used to read the record one by one. Add them to data model class.
+        var cursor: Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        } catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+
+        var id: Int
+        var name: String
+        var email: String
+        if (cursor.moveToFirst()) {
+            do {
+                id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
+                name = cursor.getString(cursor.getColumnIndex(KEY_NAME))
+                email = cursor.getString(cursor.getColumnIndex(KEY_EMAIL))
+
+                val emp = EmpModelClass(id = id, name = name, email = email)
+                empList.add(emp)
+
+            } while (cursor.moveToNext())
+        }
+        return empList
     }
 }
