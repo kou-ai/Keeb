@@ -20,19 +20,19 @@ class Generator : AppCompatActivity() {
         setContentView(R.layout.activity_generator)
 
 
-    btn_generate = findViewById(R.id.btn_generate)
-    tv_switches = findViewById(R.id.tv_switches)
-    generated_image = findViewById(R.id.generated_image)
+        btn_generate = findViewById(R.id.btn_generate)
+        tv_switches = findViewById(R.id.tv_switches)
+        generated_image = findViewById(R.id.generated_image)
 
-    btn_generate!!.setOnClickListener {
-        val rnds = (0..10).random()
+        btn_generate!!.setOnClickListener {
+            val rnds = (0..10).random()
 
-        tv_switches.setText(rnds.toString())
+            tv_switches.setText(rnds.toString())
 
-        Log.i(
-            "Generator",
-            "Keyboard: $rnds"
-        )
+            Log.i(
+                "Generator",
+                "Keyboard: $rnds"
+            )
         }
     }
 }

@@ -4,4 +4,5 @@
     <string name="title_home">Home</string>
     <string name="title_generator">Generator</string>
     <string name="title_creator">Keycap Creator</string>
+    <string name="title_activity_navbar">Navbar</string>
 </resources>

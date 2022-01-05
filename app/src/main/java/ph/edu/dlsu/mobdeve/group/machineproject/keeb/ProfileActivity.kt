@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class ProfileActivity : AppCompatActivity() {
+class   ProfileActivity : AppCompatActivity() {
 
     var btnEnd: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
