@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainApp">
+    tools:context=".MainApp"
+    android:background="#d8d2c3">
 
 
     <TextView
@@ -74,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-       android:backgroundTint="@color/black"
+        android:backgroundTint="#583c2c"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
