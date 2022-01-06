@@ -51,12 +51,12 @@ class MainApp : AppCompatActivity() {
         et_password = findViewById(R.id.et_password)
 
 
-        val name = etName!!.text.toString()
-        val email = etEmailId!!.text.toString()
+        val name = et_username!!.text.toString()
+        val password = et_password!!.text.toString()
         val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-        if (!name.isEmpty() && !email.isEmpty()) {
+        if (!name.isEmpty() && !password.isEmpty()) {
             val status =
-                databaseHandler.addEmployee(EmpModelClass(0, name, email))
+                databaseHandler.addEmployee(EmpModelClass(0, name, password))
             if (status > -1) {
                 Toast.makeText(applicationContext, "Record saved", Toast.LENGTH_LONG).show()
                 et_username!!.text.clear()
