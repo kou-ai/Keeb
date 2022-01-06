@@ -3,12 +3,18 @@ package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 var etName: EditText? = null
 var etEmailId: EditText? = null
 var btnAdd: Button? = null
+var rvItemsList: RecyclerView? = null
+var tvNoRecordsAvailable: TextView? = null
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +32,32 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        setupListofDataIntoRecyclerView()
+
     }
+
+    private fun setupListofDataIntoRecyclerView() {
+
+        rvItemsList = findViewById(R.id.rvItemsList)
+
+        if (getItemsList().size > 0) {
+
+            rvItemsList!!.visibility = View.VISIBLE
+            tvNoRecordsAvailable!!.visibility = View.GONE
+
+            // Set the LayoutManager that this RecyclerView will use.
+            rvItemsList!!.layoutManager = LinearLayoutManager(this)
+            // Adapter class is initialized and list is passed in the param.
+            val itemAdapter = ItemAdapter(this, getItemsList())
+            // adapter instance is set to the recyclerview to inflate the items.
+            rvItemsList!!.adapter = itemAdapter
+        } else {
+
+            rvItemsList!!.visibility = View.GONE
+            tvNoRecordsAvailable!!.visibility = View.VISIBLE
+        }
+    }
+
 
     //Method for saving the employee records in database
     private fun addRecord() {

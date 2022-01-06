@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="275dp"
         android:layout_marginBottom="440dp"
-        android:src="@drawable/User"
+        android:src="@drawable/testing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
