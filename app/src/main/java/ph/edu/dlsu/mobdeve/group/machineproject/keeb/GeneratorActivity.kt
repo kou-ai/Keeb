@@ -19,9 +19,9 @@ class GeneratorActivity : AppCompatActivity() {
 
     var btn_generate: Button? = null
     var binding: ActivityGeneratorBinding? = null
-    lateinit var tv_switches: TextView
-    lateinit var tv_layout: TextView
-    lateinit var tv_kprofile: TextView
+    var tv_switches: TextView? = null
+    var tv_layout: TextView? = null
+    var tv_kprofile: TextView? = null
     var generated_image: ImageView? = null
     var switchList = ArrayList<Switches?>()
     var layoutList = ArrayList<Layout?>()
@@ -37,17 +37,23 @@ class GeneratorActivity : AppCompatActivity() {
         var bundle = intent.extras
 
         populateList()
-
+        btn_generate = findViewById(R.id.btn_generate)
+        tv_switches = findViewById(R.id.tv_switches)
+        tv_layout = findViewById(R.id.tv_layout)
+        tv_kprofile = findViewById(R.id.tv_kprofile)
 
         btn_generate!!.setOnClickListener {
             val rnds = (0..2).random()
-            val final = switchList[rnds]
-            val final2 = layoutList[rnds]
-            val final3 = keyList[rnds]
+            val final = switchList[rnds]!!.switches
+            val final2 = layoutList[rnds]!!.layout
+            val final3 = keyList[rnds]!!.keycap
 
-            tv_switches.setText(final.toString())
-            tv_layout.setText(final2.toString())
-            tv_kprofile.setText(final3.toString())
+            Log.i("random", "$rnds")
+            Log.i("final random", "$final")
+
+            tv_switches!!.text = final
+            tv_layout!!.text = final2
+            tv_kprofile!!.text= final3
 
             Log.i(
                 "Generator",

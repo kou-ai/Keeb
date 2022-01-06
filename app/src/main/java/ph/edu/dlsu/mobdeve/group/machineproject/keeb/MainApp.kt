@@ -41,7 +41,7 @@ class MainApp : AppCompatActivity() {
 
             addRecord()
 
-            var gotoForumActivity = Intent(applicationContext, ForumActivity::class.java)
+            var gotoForumActivity = Intent(applicationContext, GeneratorActivity::class.java)
 
             var bundle = Bundle()
             bundle.putString("username", et_username!!.text.toString())
