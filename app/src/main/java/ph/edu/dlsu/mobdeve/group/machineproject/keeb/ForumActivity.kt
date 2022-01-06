@@ -16,7 +16,7 @@ class ForumActivity : Activity() {
     private var webView: WebView? = null
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(R.layout.activity_forum)
 
     }
 }
