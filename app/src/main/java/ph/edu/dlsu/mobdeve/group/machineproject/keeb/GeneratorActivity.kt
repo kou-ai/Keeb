@@ -11,6 +11,8 @@ import android.widget.TextView
 
 var btn_generate: Button? = null
 lateinit var tv_switches: TextView
+lateinit var tv_layout: TextView
+lateinit var tv_kprofile: TextView
 var generated_image: ImageView? = null
 
 
