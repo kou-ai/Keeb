@@ -16,9 +16,6 @@ class MainApp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_app)
-
-        et_username = findViewById(R.id.et_username)
-        et_password = findViewById(R.id.et_password)
         btn_submit = findViewById(R.id.btn_submit)
 
         btn_submit!!.setOnClickListener {
@@ -33,7 +30,9 @@ class MainApp : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            var gotoForumActivity = Intent(applicationContext, Generator::class.java)
+            addRecord()
+
+            var gotoForumActivity = Intent(applicationContext, GeneratorActivity::class.java)
 
             var bundle = Bundle()
             bundle.putString("username", et_username!!.text.toString())
@@ -45,4 +44,31 @@ class MainApp : AppCompatActivity() {
             finish()
         }
     }
+
+
+    private fun addRecord() {
+        et_username = findViewById(R.id.et_username)
+        et_password = findViewById(R.id.et_password)
+
+
+        val name = etName!!.text.toString()
+        val email = etEmailId!!.text.toString()
+        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+        if (!name.isEmpty() && !email.isEmpty()) {
+            val status =
+                databaseHandler.addEmployee(EmpModelClass(0, name, email))
+            if (status > -1) {
+                Toast.makeText(applicationContext, "Record saved", Toast.LENGTH_LONG).show()
+                et_username!!.text.clear()
+                et_password!!.text.clear()
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "Name or Email cannot be blank",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 }
+

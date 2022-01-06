@@ -1,20 +1,20 @@
 package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 
-import android.content.Intent
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import java.util.Random
 
 
 var btn_generate: Button? = null
 lateinit var tv_switches: TextView
 var generated_image: ImageView? = null
 
-class Generator : AppCompatActivity() {
+
+class GeneratorActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generator)
@@ -36,3 +36,7 @@ class Generator : AppCompatActivity() {
         }
     }
 }
+
+
+
+       
