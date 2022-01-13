@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ProfileActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#d8d2c3">
 
         <ImageView
             android:id="@+id/profile_image"
@@ -38,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#583c2c"
             android:text="Logout" />
 
 
