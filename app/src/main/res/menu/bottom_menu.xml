@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Forum"
+        android:id="@+id/forumFragment"
+        android:icon="@drawable/ic_forum"/>
+    <item android:title="Creator"
+        android:id="@+id/creatorFragment"
+        android:icon="@drawable/ic_creator"/>
+    <item android:title="Generator"
+        android:id="@+id/generatorFragment"
+        android:icon="@drawable/ic_generator"/>
+    <item android:title="Profile"
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_profile"/>
+</menu>

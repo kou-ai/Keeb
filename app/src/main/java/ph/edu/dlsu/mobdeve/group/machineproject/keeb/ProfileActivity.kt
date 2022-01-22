@@ -13,7 +13,7 @@ class   ProfileActivity : AppCompatActivity() {
 
         btnEnd = findViewById(R.id.buttonLogout)
         btnEnd!!.setOnClickListener {
-            val intent = Intent(applicationContext, MainApp::class.java)
+            val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish()
         }

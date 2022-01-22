@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keeb">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".GeneratorActivity"
             android:exported="false" />
         <activity
@@ -22,8 +25,8 @@
             android:name=".ForumActivity"
             android:exported="false" />
         <activity
-            android:name=".MainApp"
-            android:exported="true" >
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
