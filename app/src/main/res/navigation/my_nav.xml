@@ -8,20 +8,24 @@
     <fragment
         android:id="@+id/creatorFragment"
         android:label="Keeb Creator"
+        android:name ="ph.edu.dlsu.mobdeve.group.machineproject.keeb.CreatorActivity"
         tools:layout="@layout/fragment_creator" />
 
     <fragment
         android:id="@+id/profileFragment"
         android:label="Profile"
+        android:name ="ph.edu.dlsu.mobdeve.group.machineproject.keeb.ProfileActivity"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/generatorFragment"
+        android:name ="ph.edu.dlsu.mobdeve.group.machineproject.keeb.GeneratorActivity"
         android:label="Keeb Generator"
         tools:layout="@layout/fragment_generator"/>
 
     <fragment
         android:id="@+id/forumFragment"
+        android:name ="ph.edu.dlsu.mobdeve.group.machineproject.keeb.ForumActivity"
         android:label="Forum"
         tools:layout="@layout/fragment_forum" />
 
