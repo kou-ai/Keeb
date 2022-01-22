@@ -19,10 +19,6 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
-        </activity>
-        <activity
             android:name=".ForumActivity"
             android:exported="false" />
         <activity
