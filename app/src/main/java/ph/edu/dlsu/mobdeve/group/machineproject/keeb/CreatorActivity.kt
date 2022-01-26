@@ -1,18 +1,25 @@
 package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 
+
+
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.PaintView.Companion.colorList
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.PaintView.Companion.currentBrush
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.PaintView.Companion.pathList
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentCreatorBinding
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentForumBinding
 
-class CreatorActivity : AppCompatActivity(){
+class CreatorActivity : Fragment(){
 
     companion object{
         var path = Path()
@@ -22,41 +29,56 @@ class CreatorActivity : AppCompatActivity(){
     var path = Path()
     var paintBrush = Paint()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_creator)
-        setContentView(R.layout.fragment_creator)
 
-        val redBtn = findViewById<ImageButton>(R.id.redColor)
-        val blackBtn = findViewById<ImageButton>(R.id.blackColor)
-        val yellowBtn = findViewById<ImageButton>(R.id.yellowColor)
-        val eraser = findViewById<ImageButton>(R.id.blueColor)
-        supportActionBar?.hide()
+        private var _binding: FragmentCreatorBinding? = null
+        // This property is only valid between onCreateView and
+        // onDestroyView.
+        private val binding get() = _binding!!
 
-        redBtn.setOnClickListener {
-            Toast.makeText(this,"Clicked", Toast.LENGTH_SHORT).show()
-            paintBrush.color = Color.RED
-            currentColor(paintBrush.color)
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+
+            _binding = FragmentCreatorBinding.inflate(inflater, container, false)
+
+            val redBtn = view?.findViewById<ImageButton>(R.id.redColor)
+            val blackBtn = view?.findViewById<ImageButton>(R.id.blackColor)
+            val yellowBtn = view?.findViewById<ImageButton>(R.id.yellowColor)
+            val eraser = view?.findViewById<ImageButton>(R.id.blueColor)
+            /*activity.getSupportActionBar().hide()*/
+
+            redBtn!!.setOnClickListener {
+                Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                paintBrush.color = Color.RED
+                currentColor(paintBrush.color)
+            }
+
+            blackBtn!!.setOnClickListener {
+                Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                paintBrush.color = Color.BLACK
+            }
+
+            yellowBtn!!.setOnClickListener {
+                Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                paintBrush.color = Color.YELLOW
+            }
+
+            eraser!!.setOnClickListener {
+                Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                pathList.clear()
+                colorList.clear()
+                path.reset()
+
+            }
+
+
+
+            return binding.root
         }
 
-        blackBtn.setOnClickListener {
-            Toast.makeText(this,"Clicked", Toast.LENGTH_SHORT).show()
-            paintBrush.color = Color.BLACK
-        }
 
-        yellowBtn.setOnClickListener {
-            Toast.makeText(this,"Clicked", Toast.LENGTH_SHORT).show()
-            paintBrush.color = Color.YELLOW
-        }
-
-        eraser.setOnClickListener {
-            Toast.makeText(this,"Clicked", Toast.LENGTH_SHORT).show()
-            pathList.clear()
-            colorList.clear()
-            path.reset()
-
-        }
-    }
 
     private fun currentColor(color: Int){
         currentBrush = color
