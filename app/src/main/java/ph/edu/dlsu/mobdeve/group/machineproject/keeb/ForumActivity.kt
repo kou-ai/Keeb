@@ -10,13 +10,20 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.net.Uri;
 import android.view.Window;
+import androidx.appcompat.app.AppCompatActivity
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityForumBinding
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityMainBinding
 
 
-class ForumActivity : Activity() {
-    private var webView: WebView? = null
+class ForumActivity : AppCompatActivity() {
+
+    var binding: ActivityForumBinding? = null
+
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forum)
+        binding = ActivityForumBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
     }
 }
