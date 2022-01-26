@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentForumBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentProfileBinding
 
 class   ProfileActivity : Fragment() {
-
-    var btnEnd: Button? = null
 
         private var _binding: FragmentProfileBinding? = null
         // This property is only valid between onCreateView and
@@ -27,9 +26,9 @@ class   ProfileActivity : Fragment() {
         ): View? {
 
             _binding = FragmentProfileBinding.inflate(inflater, container, false)
+            val btnEnd: Button = binding.buttonLogout
 
-            btnEnd = view?.findViewById(R.id.buttonLogout)
-            btnEnd!!.setOnClickListener {
+            btnEnd.setOnClickListener {
                 val intent = Intent(activity?.applicationContext, LoginActivity::class.java)
                 startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 activity?.finish()

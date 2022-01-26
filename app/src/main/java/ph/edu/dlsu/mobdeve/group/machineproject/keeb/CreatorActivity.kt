@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -43,10 +44,10 @@ class CreatorActivity : Fragment(){
 
             _binding = FragmentCreatorBinding.inflate(inflater, container, false)
 
-            val redBtn = view?.findViewById<ImageButton>(R.id.redColor)
-            val blackBtn = view?.findViewById<ImageButton>(R.id.blackColor)
-            val yellowBtn = view?.findViewById<ImageButton>(R.id.yellowColor)
-            val eraser = view?.findViewById<ImageButton>(R.id.blueColor)
+            val redBtn:  ImageButton = binding.redColor
+            val blackBtn: ImageButton = binding.blackColor
+            val yellowBtn: ImageButton = binding.yellowColor
+            val eraser: ImageButton = binding.blueColor
             /*activity.getSupportActionBar().hide()*/
 
             redBtn!!.setOnClickListener {
