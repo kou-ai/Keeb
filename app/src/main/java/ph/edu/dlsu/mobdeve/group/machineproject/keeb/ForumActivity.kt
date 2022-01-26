@@ -11,18 +11,20 @@ import android.webkit.WebViewClient
 import android.net.Uri;
 import android.view.Window;
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityForumBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityMainBinding
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentForumBinding
 
 
 class ForumActivity : AppCompatActivity() {
 
-    var binding: ActivityForumBinding? = null
+    var binding: FragmentForumBinding? = null
 
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityForumBinding.inflate(layoutInflater)
+        binding = FragmentForumBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
     }
