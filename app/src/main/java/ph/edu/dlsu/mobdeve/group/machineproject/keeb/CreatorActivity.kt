@@ -6,11 +6,13 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.compose.ui.input.key.Key.Companion.I
 import androidx.fragment.app.Fragment
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.PaintView.Companion.colorList
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.PaintView.Companion.currentBrush
@@ -51,6 +53,8 @@ class CreatorActivity : Fragment(){
             redBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
                 paintBrush.color = Color.RED
+                val placeholder = paintBrush.color
+                Log.i("Paintbrush", "color : $placeholder")
                 currentColor(paintBrush.color)
             }
 
