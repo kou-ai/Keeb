@@ -1,6 +1,5 @@
 package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,9 +9,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityGeneratorBinding
-import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentForumBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentGeneratorBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.keebDAO.KeebDAO
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.keebDAO.KeebDAOArrayList
@@ -40,7 +36,7 @@ class GeneratorActivity : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-        ): View? {
+        ): View {
 
             _binding = FragmentGeneratorBinding.inflate(inflater, container, false)
 
@@ -51,7 +47,7 @@ class GeneratorActivity : Fragment() {
             val tv_layout: TextView = binding.tvLayout
             val tv_kprofile: TextView = binding.tvKprofile
 
-            btn_generate!!.setOnClickListener {
+            btn_generate.setOnClickListener {
                 val rnds = (0..2).random()
                 val final = switchList[rnds]!!.switches
                 val final2 = layoutList[rnds]!!.layout
