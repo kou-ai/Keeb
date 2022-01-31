@@ -19,7 +19,7 @@ class PaintView : View{
     companion object {
         var pathList = ArrayList<Path>()
         var colorList = ArrayList<Int>()
-        var currentBrush = Color.BLACK
+        var currentBrush = Color.BLUE
     }
 
     constructor(context: Context) : this(context, null){

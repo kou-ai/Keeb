@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
             addRecord()
 
-            var gotoMainActivity = Intent(applicationContext,MainActivity::class.java)
+            var gotoMainActivity = Intent(applicationContext, MainActivity::class.java)
 
             var bundle = Bundle()
             bundle.putString("username", et_username!!.text.toString())

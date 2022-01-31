@@ -49,27 +49,34 @@ class CreatorActivity : Fragment(){
             val yellowBtn: ImageButton = binding.yellowColor
             val eraser: ImageButton = binding.blueColor
             /*activity.getSupportActionBar().hide()*/
+            var placeholder: Int? = null
 
             redBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
                 paintBrush.color = Color.RED
-                val placeholder = paintBrush.color
+                placeholder = paintBrush.color
                 Log.i("Paintbrush", "color : $placeholder")
                 currentColor(paintBrush.color)
             }
 
             blackBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                placeholder = paintBrush.color
+                Log.i("Paintbrush", "color : $placeholder")
                 paintBrush.color = Color.BLACK
             }
 
             yellowBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                placeholder = paintBrush.color
+                Log.i("Paintbrush", "color : $placeholder")
                 paintBrush.color = Color.YELLOW
             }
 
             eraser.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
+                placeholder = paintBrush.color
+                Log.i("Paintbrush", "color : $placeholder")
                 pathList.clear()
                 colorList.clear()
                 path.reset()
@@ -87,5 +94,4 @@ class CreatorActivity : Fragment(){
         currentBrush = color
         path = Path()
     }
-
 }
