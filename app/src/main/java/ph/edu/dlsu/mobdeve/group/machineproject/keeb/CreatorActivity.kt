@@ -27,10 +27,6 @@ class CreatorActivity : Fragment(){
         var paintBrush = Paint()
     }
 
-    var path = Path()
-    var paintBrush = Paint()
-
-
         private var _binding: FragmentCreatorBinding? = null
         // This property is only valid between onCreateView and
         // onDestroyView.
@@ -47,43 +43,33 @@ class CreatorActivity : Fragment(){
             val redBtn:  ImageButton = binding.redColor
             val blackBtn: ImageButton = binding.blackColor
             val yellowBtn: ImageButton = binding.yellowColor
-            val eraser: ImageButton = binding.blueColor
+            val eraser: ImageButton = binding.eraser
             /*activity.getSupportActionBar().hide()*/
-            var placeholder: Int? = null
 
             redBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
                 paintBrush.color = Color.RED
-                placeholder = paintBrush.color
-                Log.i("Paintbrush", "color : $placeholder")
                 currentColor(paintBrush.color)
             }
 
             blackBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
-                placeholder = paintBrush.color
-                Log.i("Paintbrush", "color : $placeholder")
                 paintBrush.color = Color.BLACK
+                currentColor(paintBrush.color)
             }
 
             yellowBtn.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
-                placeholder = paintBrush.color
-                Log.i("Paintbrush", "color : $placeholder")
                 paintBrush.color = Color.YELLOW
+                currentColor(paintBrush.color)
             }
 
             eraser.setOnClickListener {
                 Toast.makeText(requireActivity(),"Clicked", Toast.LENGTH_SHORT).show()
-                placeholder = paintBrush.color
-                Log.i("Paintbrush", "color : $placeholder")
                 pathList.clear()
                 colorList.clear()
                 path.reset()
-
             }
-
-
 
             return binding.root
         }
