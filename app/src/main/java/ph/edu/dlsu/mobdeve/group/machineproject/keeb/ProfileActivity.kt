@@ -36,9 +36,8 @@ class   ProfileActivity : Fragment() {
             checkUser()
 
             btnEnd.setOnClickListener {
-                val intent = Intent(activity?.applicationContext, LoginActivity::class.java)
-                startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                activity?.finish()
+                firebaseAuth.signOut()
+                checkUser()
             }
 
             return binding.root
