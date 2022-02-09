@@ -12,7 +12,8 @@ import android.view.ViewGroup
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.CreatorActivity.Companion.paintBrush
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.CreatorActivity.Companion.path
 
-class PaintView : View{
+class
+PaintView : View{
 
     var params : ViewGroup.LayoutParams? = null
 

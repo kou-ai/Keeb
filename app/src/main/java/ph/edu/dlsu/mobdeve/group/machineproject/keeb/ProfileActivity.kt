@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentProfileBinding
@@ -16,9 +17,12 @@ class   ProfileActivity : Fragment() {
         private var _binding: FragmentProfileBinding? = null
         private lateinit var firebaseAuth: FirebaseAuth
         private lateinit var actionBar: ActionBar
+
         // This property is only valid between onCreateView and
         // onDestroyView.
         private val binding get() = _binding!!
+        val firebaseUser = firebaseAuth.currentUser
+
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -28,9 +32,13 @@ class   ProfileActivity : Fragment() {
 
             _binding = FragmentProfileBinding.inflate(inflater, container, false)
             val btnEnd: Button = binding.buttonLogout
+            val profileUser: TextView = binding.profileUsername
+            profileUser.text = firebaseUser.toString()
 
-            actionBar = requireActivity().actionBar!!
-            actionBar.title = "Profile"
+            // actionBar = requireActivity().actionBar!!
+            // actionBar.title = "Profile"
+
+
 
             firebaseAuth = FirebaseAuth.getInstance()
             checkUser()
