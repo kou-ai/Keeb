@@ -24,7 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="200dp"
         android:gravity="bottom"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,27 +60,25 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_register"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="#583c2c"
-        android:text="REGISTER"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
-
-    <Button
         android:id="@+id/btn_submit"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="#583c2c"
         android:text="LOGIN"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/btn_register"
         tools:layout_editor_absoluteX="0dp" />
 
+    <Button
+        android:id="@+id/btn_register"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#583c2c"
+        android:text="REGISTER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

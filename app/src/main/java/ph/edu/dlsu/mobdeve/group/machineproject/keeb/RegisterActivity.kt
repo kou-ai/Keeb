@@ -19,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
     private lateinit var firebaseAuth: FirebaseAuth
     var btn_reg: Button? = null
+    var btn_login: Button? = null
     private var email = ""
     private var password = ""
 
@@ -27,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
+        btn_login = findViewById(R.id.btn_login)
         btn_reg = findViewById(R.id.btn_register2)
 
         actionBar = supportActionBar!!
@@ -43,6 +45,10 @@ class RegisterActivity : AppCompatActivity() {
 
         btn_reg!!.setOnClickListener {
             validateData()
+        }
+
+        btn_login!!.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 
@@ -72,9 +78,9 @@ class RegisterActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
-                Toast.makeText(this, "Register", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Account successfully created, please log in.", Toast.LENGTH_SHORT).show()
 
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
             .addOnFailureListener { e->
