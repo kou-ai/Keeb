@@ -19,7 +19,7 @@ class PaintView : View{
     companion object {
         var pathList = ArrayList<Path>()
         var colorList = ArrayList<Int>()
-        var currentBrush = Color.BLUE
+        var currentBrush = Color.BLACK
     }
 
     constructor(context: Context) : this(context, null){
@@ -62,10 +62,10 @@ class PaintView : View{
         return false
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         for(i in pathList.indices){
             paintBrush.color = colorList[i]
-            canvas!!.drawPath(pathList[i], paintBrush)
+            canvas.drawPath(pathList[i], paintBrush)
             invalidate()
         }
     }

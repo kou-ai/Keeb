@@ -23,13 +23,6 @@
             android:background="@color/black" />
 
         <ImageButton
-            android:id="@+id/blueColor"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="18dp"
-            android:background="@color/blue" />
-
-        <ImageButton
             android:id="@+id/redColor"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -42,6 +35,14 @@
             android:layout_height="50dp"
             android:layout_margin="18dp"
             android:background="@color/yellow" />
+
+        <ImageButton
+            android:id="@+id/eraser"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="18dp"
+            android:background="@color/white" />
+
     </LinearLayout>
 
     <RelativeLayout
