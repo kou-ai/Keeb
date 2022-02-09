@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "919857023051",
+    "project_id": "fir-login-signup-862d3",
+    "storage_bucket": "fir-login-signup-862d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919857023051:android:287e4b0d2a326f1787e5ce",
+        "android_client_info": {
+          "package_name": "ph.edu.dlsu.mobdeve.group.machineproject.keeb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919857023051-7ghjr0dhuc2hqmlviqhn3r20a9d4qh7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.edu.dlsu.mobdeve.group.machineproject.keeb",
+            "certificate_hash": "c169b4c63c09156a58752df17762d67787a1d282"
+          }
+        },
+        {
+          "client_id": "919857023051-nb4upnd07bsc5nuapc4gr7v5ubau8m2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8qsPa7WJdztdxlJw2gpy86OVGCK1bib4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919857023051-nb4upnd07bsc5nuapc4gr7v5ubau8m2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
