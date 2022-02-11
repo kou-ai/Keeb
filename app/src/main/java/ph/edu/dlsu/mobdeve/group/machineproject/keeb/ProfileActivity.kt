@@ -21,8 +21,6 @@ class   ProfileActivity : Fragment() {
         // This property is only valid between onCreateView and
         // onDestroyView.
         private val binding get() = _binding!!
-        val firebaseUser = firebaseAuth.currentUser
-
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -32,6 +30,7 @@ class   ProfileActivity : Fragment() {
 
             _binding = FragmentProfileBinding.inflate(inflater, container, false)
             val btnEnd: Button = binding.buttonLogout
+            val firebaseUser = firebaseAuth.currentUser
             val profileUser: TextView = binding.profileUsername
             profileUser.text = firebaseUser.toString()
 

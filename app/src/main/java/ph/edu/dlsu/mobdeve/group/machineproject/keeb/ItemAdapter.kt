@@ -9,6 +9,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ItemRowBinding
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 
 var llMain: LinearLayout? = null
 var tvName: TextView? = null
@@ -17,7 +19,7 @@ var ivEdit: ImageView? = null
 var ivDelete: ImageView? = null
 
 
-class ItemAdapter(val context: Context, val items: ArrayList<EmpModelClass>) :
+class ItemAdapter(private val context: Context, private var postList: ArrayList<Post>) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     /**
@@ -27,15 +29,8 @@ class ItemAdapter(val context: Context, val items: ArrayList<EmpModelClass>) :
      * {@link ViewHolder} and initializes some private fields to be used by RecyclerView.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(context).inflate(
-                R.layout.item_row,
-                parent,
-                true
-            )
-        )
-
-
+        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(itemBinding)
     }
 
     /**
@@ -49,8 +44,7 @@ class ItemAdapter(val context: Context, val items: ArrayList<EmpModelClass>) :
      * layout file.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        val item = items.get(position)
+        holder.bindPost(postList[position])
 
         /*holder.tvName.toString() = item.name
         holder.tvEmail.toString() = item.email */
@@ -74,18 +68,24 @@ class ItemAdapter(val context: Context, val items: ArrayList<EmpModelClass>) :
      * Gets the number of items in the list
      */
     override fun getItemCount(): Int {
-        return items.size
+        return postList.size
     }
 
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(private val itemBinding: ItemRowBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         // Holds the TextView that will add each item to
+        // need i-link to firebase users
 
-        val llMain = view
-        var tvName = view
-        var tvEmail = view
+        fun bindPost(post: Post) {
+            itemBinding.tvName.text = post.postUser
+            itemBinding.tvEmail.text = post.postUserEmail
+        }
+
+        val llMain = view // di ko gets para san 'to
+        // var tvName = view
+        // var tvEmail = view
     }
 }
