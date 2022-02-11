@@ -50,6 +50,7 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
         holder.tvEmail.toString() = item.email */
 
         // Updating the background color according to the odd/even positions in list.
+        /*
         if (position % 2 == 0) {
             holder.llMain.setBackgroundColor(
                 ContextCompat.getColor(
@@ -60,6 +61,8 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
         } else {
             holder.llMain.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
         }
+
+         */
 
 
     }
@@ -84,7 +87,7 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
             itemBinding.tvEmail.text = post.postUserEmail
         }
 
-        val llMain = view // di ko gets para san 'to
+        //val llMain = view // di ko gets para san 'to
         // var tvName = view
         // var tvEmail = view
     }
