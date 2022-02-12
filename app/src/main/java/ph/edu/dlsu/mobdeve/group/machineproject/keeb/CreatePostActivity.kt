@@ -8,10 +8,13 @@ import android.media.Image
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityCreatePostBinding
 
 class CreatePostActivity : AppCompatActivity() {
@@ -48,15 +51,14 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val IMAGE_CHOOSE = 1000;
         private val PERMISSION_CODE = 1001;
     }
 
     private fun chooseImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-
-        startActivityForResult(intent, IMAGE_CHOOSE)
+        Log.i("intent value", intent.toString())
+        startActivity.launch(intent)
     }
 
     override fun onRequestPermissionsResult(
@@ -65,21 +67,24 @@ class CreatePostActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode){
+        when (requestCode) {
             PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     chooseImageGallery()
-                }else{
-                    Toast.makeText(this,"Permission denied", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            picture!!.setImageURI(data?.data)
+    var startActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                picture!!.setImageURI(intent.data)
+            }
         }
-    }
 }
+
+
