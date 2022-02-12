@@ -83,7 +83,7 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
         // need i-link to firebase users
 
         fun bindPost(post: Post) {
-            itemBinding.tvName.text = post.postUser
+            itemBinding.tvUsername.text = post.postUser
             itemBinding.tvEmail.text = post.postUserEmail
         }
 
