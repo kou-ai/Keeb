@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.Image
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -52,13 +53,14 @@ class CreatePostActivity : AppCompatActivity() {
 
     companion object {
         private val PERMISSION_CODE = 1001;
+        private val IMAGE_CODE = 1001;
     }
 
     private fun chooseImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         Log.i("intent value", intent.toString())
-        startActivity.launch(intent)
+        startActivityForResult(intent, IMAGE_CODE)
     }
 
     override fun onRequestPermissionsResult(
@@ -78,13 +80,12 @@ class CreatePostActivity : AppCompatActivity() {
         }
     }
 
-    var startActivity =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-
-            if (result.resultCode == Activity.RESULT_OK) {
-                picture!!.setImageURI(intent.data)
-            }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_CODE && resultCode == RESULT_OK){
+            picture!!.setImageURI(data?.data)
         }
+    }
 }
 
 
