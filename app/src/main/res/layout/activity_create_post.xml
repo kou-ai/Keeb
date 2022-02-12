@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#d8d2c3"
     tools:context=".CreatePostActivity">
 
     <EditText
@@ -29,6 +30,7 @@
         android:id="@+id/btn_uploadPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#583c2c"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Upload Photo"/>
@@ -46,6 +48,7 @@
         android:id="@+id/btn_uploadPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#583c2c"
         app:layout_constraintBottom_toBottomOf="@id/et_caption"
         android:text="Publish Post"/>
 

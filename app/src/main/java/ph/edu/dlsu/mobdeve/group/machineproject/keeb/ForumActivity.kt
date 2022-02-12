@@ -32,8 +32,8 @@ class ForumActivity : Fragment() {
 
         val btn_createPost: Button = binding.btnCreatePost
 
-        itemAdapter = ItemAdapter(applicationContext, postList)
-        _binding!!.forumPosts.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+        itemAdapter = ItemAdapter(requireActivity().applicationContext, postList)
+        _binding!!.forumPosts.layoutManager = LinearLayoutManager(requireActivity().applicationContext, LinearLayoutManager.VERTICAL, false)
         _binding!!.forumPosts.adapter = itemAdapter
 
         btn_createPost.setOnClickListener {
