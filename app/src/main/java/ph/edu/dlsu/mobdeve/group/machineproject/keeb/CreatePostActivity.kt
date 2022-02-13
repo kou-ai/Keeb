@@ -51,7 +51,7 @@ class CreatePostActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
         Log.i("uidofuser", uid.toString())
-        Log.i("dbRef", dbRef.toString())
+        // Log.i("dbRef", dbRef.toString())
 
 
         uploadbtn!!.setOnClickListener {
