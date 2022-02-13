@@ -48,8 +48,11 @@ class CreatePostActivity : AppCompatActivity() {
         title = findViewById(R.id.et_title)
         caption = findViewById(R.id.et_caption)
         picture = findViewById(R.id.img_uploadedPic)
+        firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
+        Log.i("uidofuser", uid.toString())
         dbRef = FirebaseDatabase.getInstance().getReference("Posts")
+        Log.i("dbRef", dbRef.toString())
 
 
         uploadbtn!!.setOnClickListener {
@@ -67,10 +70,17 @@ class CreatePostActivity : AppCompatActivity() {
             val postUser = firebaseAuth.currentUser.toString()
 
             val post = Post(postTitle, postCaption, postUser)
+            Log.i("postTitle", postTitle)
+            Log.i("postTitle", postCaption)
+            Log.i("postofUser", post.toString())
             if (uid != null){
+                Log.i("test", "test")
+                Log.i("dbRefForUid", dbRef.child(uid).setValue(post).toString())
                 dbRef.child(uid).setValue(post).addOnCompleteListener {
+                    Log.i("dbref pumasok", "dbref pasok")
                     if (it.isSuccessful){
-                            uploadImage()
+                        Log.i("pumasok", "uploaded")
+                        uploadImage()
                     } else {
                         Toast.makeText(this@CreatePostActivity, "Failed to update DB", Toast.LENGTH_SHORT).show()
                     }
@@ -95,6 +105,7 @@ class CreatePostActivity : AppCompatActivity() {
     private fun uploadImage() {
         passedImage
         srRef = FirebaseStorage.getInstance().getReference("Posts/"+firebaseAuth.currentUser?.uid)
+        Log.i("srRef", srRef.toString())
         srRef.putFile(passedImage!!).addOnSuccessListener {
             Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener { e->
