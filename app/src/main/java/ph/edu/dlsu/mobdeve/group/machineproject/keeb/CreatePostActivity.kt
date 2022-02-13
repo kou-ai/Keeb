@@ -51,7 +51,6 @@ class CreatePostActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
         Log.i("uidofuser", uid.toString())
-        dbRef = FirebaseDatabase.getInstance().getReference("Posts")
         Log.i("dbRef", dbRef.toString())
 
 
@@ -65,27 +64,7 @@ class CreatePostActivity : AppCompatActivity() {
         }
 
         publishbtn!!.setOnClickListener {
-            val postTitle = binding!!.etTitle.text.toString()
-            val postCaption = binding!!.etCaption.text.toString()
-            val postUser = firebaseAuth.currentUser.toString()
-
-            val post = Post(postTitle, postCaption, postUser)
-            Log.i("postTitle", postTitle)
-            Log.i("postTitle", postCaption)
-            Log.i("postofUser", post.toString())
-            if (uid != null){
-                Log.i("test", "test")
-                Log.i("dbRefForUid", dbRef.child(uid).setValue(post).toString())
-                dbRef.child(uid).setValue(post).addOnCompleteListener {
-                    Log.i("dbref pumasok", "dbref pasok")
-                    if (it.isSuccessful){
-                        Log.i("pumasok", "uploaded")
-                        uploadImage()
-                    } else {
-                        Toast.makeText(this@CreatePostActivity, "Failed to update DB", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            addPost(title.toString(), caption.toString(), uid!!, firebaseAuth.currentUser.toString())
         }
 
     }
@@ -100,6 +79,13 @@ class CreatePostActivity : AppCompatActivity() {
         intent.type = "image/*"
         Log.i("intent value", intent.toString())
         startActivityForResult(intent, IMAGE_CODE)
+    }
+
+    private fun addPost(title: String, caption: String, uid: String, users: String){
+        dbRef = FirebaseDatabase.getInstance().getReference("Posts")
+        dbRef.child(uid).setValue(Post(title, caption, users))
+        uploadImage()
+
     }
 
     private fun uploadImage() {
