@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -18,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var actionBar: ActionBar
     private lateinit var progressDialog: ProgressDialog
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var dbRef: DatabaseReference
     var btn_reg: Button? = null
     var btn_login: Button? = null
     private var email = ""
@@ -42,6 +45,8 @@ class RegisterActivity : AppCompatActivity() {
         progressDialog.setCanceledOnTouchOutside(false)
 
         firebaseAuth = FirebaseAuth.getInstance()
+
+
 
         btn_reg!!.setOnClickListener {
             validateData()
@@ -72,6 +77,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun firebaseSignUp() {
         progressDialog.show()
+
 
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnSuccessListener {

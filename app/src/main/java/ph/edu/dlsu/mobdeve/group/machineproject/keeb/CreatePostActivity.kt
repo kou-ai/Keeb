@@ -16,12 +16,22 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityCreatePostBinding
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 
 class CreatePostActivity : AppCompatActivity() {
 
     var binding: ActivityCreatePostBinding? = null
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var srRef: StorageReference
     var picture: ImageView? = null
+    var passedImage: Uri? = null
     var uploadbtn: Button? = null
     var publishbtn: Button? = null
     var title: EditText? = null
@@ -38,6 +48,8 @@ class CreatePostActivity : AppCompatActivity() {
         title = findViewById(R.id.et_title)
         caption = findViewById(R.id.et_caption)
         picture = findViewById(R.id.img_uploadedPic)
+        val uid = firebaseAuth.currentUser?.uid
+        dbRef = FirebaseDatabase.getInstance().getReference("Posts")
 
 
         uploadbtn!!.setOnClickListener {
@@ -46,6 +58,23 @@ class CreatePostActivity : AppCompatActivity() {
                 requestPermissions(permissions, PERMISSION_CODE)
             } else {
                 chooseImageGallery()
+            }
+        }
+
+        publishbtn!!.setOnClickListener {
+            val postTitle = binding!!.etTitle.text.toString()
+            val postCaption = binding!!.etCaption.text.toString()
+            val postUser = firebaseAuth.currentUser.toString()
+
+            val post = Post(postTitle, postCaption, postUser)
+            if (uid != null){
+                dbRef.child(uid).setValue(post).addOnCompleteListener {
+                    if (it.isSuccessful){
+                            uploadImage()
+                    } else {
+                        Toast.makeText(this@CreatePostActivity, "Failed to update DB", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 
@@ -61,6 +90,16 @@ class CreatePostActivity : AppCompatActivity() {
         intent.type = "image/*"
         Log.i("intent value", intent.toString())
         startActivityForResult(intent, IMAGE_CODE)
+    }
+
+    private fun uploadImage() {
+        passedImage
+        srRef = FirebaseStorage.getInstance().getReference("Posts/"+firebaseAuth.currentUser?.uid)
+        srRef.putFile(passedImage!!).addOnSuccessListener {
+            Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener { e->
+            Toast.makeText(this, "Update failed due to ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -84,6 +123,7 @@ class CreatePostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_CODE && resultCode == RESULT_OK){
             picture!!.setImageURI(data?.data)
+            passedImage = data?.data
         }
     }
 }
