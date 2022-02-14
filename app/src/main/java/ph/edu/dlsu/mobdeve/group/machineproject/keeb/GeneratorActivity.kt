@@ -34,7 +34,7 @@ class GeneratorActivity : Fragment() {
     private var _binding: FragmentGeneratorBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var storageRef: StorageReference
-    private val imageList = intArrayOf()
+    private val imageList = intArrayOf(R.drawable.keeb0, R.drawable.keeb1, R.drawable.keeb2, R.drawable.keeb3, R.drawable.keeb4, R.drawable.keeb5, R.drawable.keeb6, R.drawable.keeb7)
 
 
 
@@ -79,24 +79,14 @@ class GeneratorActivity : Fragment() {
                 tv_kprofile.text= final3
 
                 when (combinations){
-                    "000" -> tv_switches.text = final
-                    "000" -> tv_switches.text = final
-                    "000" -> tv_switches.text = final
-
-                    "111" -> tv_switches.text = final
-
-                    "001" -> tv_switches.text = final
-
-                    "010" -> tv_switches.text = final
-
-                    "100" -> tv_switches.text = final
-
-                    "110" -> tv_switches.text = final
-
-                    "011" -> tv_switches.text = final
-
-                    "101" -> tv_switches.text = final
-
+                    "000" -> img_gen.setImageResource(imageList[0])
+                    "111" -> img_gen.setImageResource(imageList[1])
+                    "001" -> img_gen.setImageResource(imageList[2])
+                    "010" -> img_gen.setImageResource(imageList[3])
+                    "100" -> img_gen.setImageResource(imageList[4])
+                    "110" -> img_gen.setImageResource(imageList[5])
+                    "011" -> img_gen.setImageResource(imageList[6])
+                    "101" -> img_gen.setImageResource(imageList[7])
                 }
 
                 Log.i(
