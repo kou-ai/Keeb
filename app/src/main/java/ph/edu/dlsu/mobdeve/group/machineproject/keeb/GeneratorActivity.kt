@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -86,14 +87,30 @@ class GeneratorActivity : Fragment() {
                 tv_kprofile.text= final3
 
                 when (combinations){
-                    "000" -> img_gen.setImageURI(http0)
-                    "111" -> img_gen.setImageURI(http1)
-                    "001" -> img_gen.setImageURI(http2)
-                    "010" -> img_gen.setImageURI(http3)
-                    "100" -> img_gen.setImageURI(http4)
-                    "110" -> img_gen.setImageURI(http5)
-                    "011" -> img_gen.setImageURI(http6)
-                    "101" -> img_gen.setImageURI(http7)
+                    "000" -> Glide.with(this)
+                        .load(http0)
+                        .into(img_gen)
+                    "111" -> Glide.with(this)
+                        .load(http1)
+                        .into(img_gen)
+                    "001" -> Glide.with(this)
+                        .load(http2)
+                        .into(img_gen)
+                    "010" -> Glide.with(this)
+                        .load(http3)
+                        .into(img_gen)
+                    "100" -> Glide.with(this)
+                        .load(http4)
+                        .into(img_gen)
+                    "110" -> Glide.with(this)
+                        .load(http5)
+                        .into(img_gen)
+                    "011" -> Glide.with(this)
+                        .load(http6)
+                        .into(img_gen)
+                    "101" -> Glide.with(this)
+                        .load(http7)
+                        .into(img_gen)
                 }
 
                 Log.i(
