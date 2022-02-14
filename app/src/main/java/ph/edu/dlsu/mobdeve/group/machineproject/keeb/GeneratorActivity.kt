@@ -75,7 +75,8 @@ class GeneratorActivity : Fragment() {
                 val final = switchList[rnds]!!.switches
                 val final2 = layoutList[rnds2]!!.layout
                 val final3 = keyList[rnds3]!!.keycap
-                val Combinations: IntArray = intArrayOf(rnds, rnds2, rnds3)
+                val combinations: String = rnds.toString().plus(rnds2.toString()).plus(rnds3.toString())
+
 
                 Log.i("random", "$rnds")
                 Log.i("final random", final)
@@ -84,15 +85,15 @@ class GeneratorActivity : Fragment() {
                 tv_layout.text = final2
                 tv_kprofile.text= final3
 
-                when (Combinations){
-                    intArrayOf(0,0,0) -> img_gen.setImageURI(http0)
-                    intArrayOf(1,1,1) -> img_gen.setImageURI(http1)
-                    intArrayOf(0,0,1) -> img_gen.setImageURI(http2)
-                    intArrayOf(0,1,0) -> img_gen.setImageURI(http3)
-                    intArrayOf(1,0,0) -> img_gen.setImageURI(http4)
-                    intArrayOf(0,1,1) -> img_gen.setImageURI(http5)
-                    intArrayOf(1,1,0) -> img_gen.setImageURI(http6)
-                    intArrayOf(1,0,1) -> img_gen.setImageURI(http7)
+                when (combinations){
+                    "000" -> img_gen.setImageURI(http0)
+                    "111" -> img_gen.setImageURI(http1)
+                    "001" -> img_gen.setImageURI(http2)
+                    "010" -> img_gen.setImageURI(http3)
+                    "100" -> img_gen.setImageURI(http4)
+                    "110" -> img_gen.setImageURI(http5)
+                    "011" -> img_gen.setImageURI(http6)
+                    "101" -> img_gen.setImageURI(http7)
                 }
 
                 Log.i(
