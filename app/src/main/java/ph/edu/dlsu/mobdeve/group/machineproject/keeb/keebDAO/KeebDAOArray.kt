@@ -12,13 +12,10 @@ class KeebDAOArrayList :  KeebDAO{
 
     init {
         switchList.add(Switches("Gateron Yellows"))
-        switchList.add(Switches("Gateron Reds"))
         switchList.add(Switches("NK Creams"))
         layoutList.add(Layout("70%"))
-        layoutList.add(Layout("TKL"))
         layoutList.add(Layout("60%"))
         keyList.add(Keycaps("GMK Blue"))
-        keyList.add(Keycaps("GMK Botanical"))
         keyList.add(Keycaps("GMK Mizu"))
     }
 
