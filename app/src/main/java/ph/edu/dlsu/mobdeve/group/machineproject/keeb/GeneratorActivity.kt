@@ -12,8 +12,10 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentGeneratorBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.keebDAO.KeebDAO
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.keebDAO.KeebDAOArrayList
@@ -48,19 +50,19 @@ class GeneratorActivity : Fragment() {
         ): View {
 
             firebaseAuth = FirebaseAuth.getInstance()
-            storageRef = FirebaseStorage.getInstance().getReference("Keyboards")
+            storageRef = Firebase.storage.reference
 
             _binding = FragmentGeneratorBinding.inflate(inflater, container, false)
+            val storage = Firebase.storage
 
-
-            val http0 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/0.png").toString().toUri()
-            val http1 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/1.png").toString().toUri()
-            val http2 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/2.png").toString().toUri()
-            val http3 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/3.png").toString().toUri()
-            val http4 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/4.png").toString().toUri()
-            val http5= storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/5.png").toString().toUri()
-            val http6 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/6.png").toString().toUri()
-            val http7 = storageRef.storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/7.png").toString().toUri()
+            val http0 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/0.png").toString().toUri()
+            val http1 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/1.png").toString().toUri()
+            val http2 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/2.png").toString().toUri()
+            val http3 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/3.png").toString().toUri()
+            val http4 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/4.png").toString().toUri()
+            val http5 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/5.png").toString().toUri()
+            val http6 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/6.png").toString().toUri()
+            val http7 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/7.png").toString().toUri()
 
             populateList()
             val btn_generate: Button = binding.btnGenerate
@@ -87,30 +89,22 @@ class GeneratorActivity : Fragment() {
                 tv_kprofile.text= final3
 
                 when (combinations){
-                    "000" -> Glide.with(this)
-                        .load(http0)
-                        .into(img_gen)
-                    "111" -> Glide.with(this)
-                        .load(http1)
-                        .into(img_gen)
-                    "001" -> Glide.with(this)
-                        .load(http2)
-                        .into(img_gen)
-                    "010" -> Glide.with(this)
-                        .load(http3)
-                        .into(img_gen)
-                    "100" -> Glide.with(this)
-                        .load(http4)
-                        .into(img_gen)
-                    "110" -> Glide.with(this)
-                        .load(http5)
-                        .into(img_gen)
-                    "011" -> Glide.with(this)
-                        .load(http6)
-                        .into(img_gen)
-                    "101" -> Glide.with(this)
-                        .load(http7)
-                        .into(img_gen)
+                    "000" -> img_gen.setImageURI(http0)
+
+                    "111" -> img_gen.setImageURI(http1)
+
+                    "001" -> img_gen.setImageURI(http2)
+
+                    "010" -> img_gen.setImageURI(http3)
+
+                    "100" -> img_gen.setImageURI(http4)
+
+                    "110" -> img_gen.setImageURI(http5)
+
+                    "011" -> img_gen.setImageURI(http6)
+
+                    "101" -> img_gen.setImageURI(http7)
+
                 }
 
                 Log.i(
