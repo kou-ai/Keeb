@@ -34,7 +34,7 @@ class GeneratorActivity : Fragment() {
     private var _binding: FragmentGeneratorBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var storageRef: StorageReference
-
+    private val imageList = intArrayOf()
 
 
 
@@ -53,16 +53,6 @@ class GeneratorActivity : Fragment() {
             storageRef = Firebase.storage.reference
 
             _binding = FragmentGeneratorBinding.inflate(inflater, container, false)
-            val storage = Firebase.storage
-
-            val http0 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/0.png").toString().toUri()
-            val http1 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/1.png").toString().toUri()
-            val http2 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/2.png").toString().toUri()
-            val http3 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/3.png").toString().toUri()
-            val http4 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/4.png").toString().toUri()
-            val http5 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/5.png").toString().toUri()
-            val http6 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/6.png").toString().toUri()
-            val http7 = storage.getReferenceFromUrl("gs://fir-login-signup-862d3.appspot.com/Keyboards/7.png").toString().toUri()
 
             populateList()
             val btn_generate: Button = binding.btnGenerate
@@ -89,21 +79,23 @@ class GeneratorActivity : Fragment() {
                 tv_kprofile.text= final3
 
                 when (combinations){
-                    "000" -> img_gen.setImageURI(http0)
+                    "000" -> tv_switches.text = final
+                    "000" -> tv_switches.text = final
+                    "000" -> tv_switches.text = final
 
-                    "111" -> img_gen.setImageURI(http1)
+                    "111" -> tv_switches.text = final
 
-                    "001" -> img_gen.setImageURI(http2)
+                    "001" -> tv_switches.text = final
 
-                    "010" -> img_gen.setImageURI(http3)
+                    "010" -> tv_switches.text = final
 
-                    "100" -> img_gen.setImageURI(http4)
+                    "100" -> tv_switches.text = final
 
-                    "110" -> img_gen.setImageURI(http5)
+                    "110" -> tv_switches.text = final
 
-                    "011" -> img_gen.setImageURI(http6)
+                    "011" -> tv_switches.text = final
 
-                    "101" -> img_gen.setImageURI(http7)
+                    "101" -> tv_switches.text = final
 
                 }
 
