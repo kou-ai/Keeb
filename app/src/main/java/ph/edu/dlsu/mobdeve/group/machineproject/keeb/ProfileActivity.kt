@@ -31,7 +31,7 @@ class   ProfileActivity : Fragment() {
             _binding = FragmentProfileBinding.inflate(inflater, container, false)
             firebaseAuth = FirebaseAuth.getInstance()
             val btnEnd: Button = binding.buttonLogout
-            val firebaseUser = firebaseAuth.currentUser
+            val firebaseUser = firebaseAuth.currentUser?.email
             val profileUser: TextView = binding.profileUsername
             profileUser.text = firebaseUser.toString()
 

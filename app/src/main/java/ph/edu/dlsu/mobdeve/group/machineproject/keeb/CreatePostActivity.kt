@@ -19,6 +19,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityCreatePostBinding
@@ -50,6 +52,7 @@ class CreatePostActivity : AppCompatActivity() {
         picture = findViewById(R.id.img_uploadedPic)
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
+        val emailUser = firebaseAuth.currentUser?.email
         Log.i("uidofuser", uid.toString())
 
         // Log.i("dbRef", dbRef.toString())
@@ -65,7 +68,7 @@ class CreatePostActivity : AppCompatActivity() {
         }
 
         publishbtn!!.setOnClickListener {
-            addPost(title.toString(), caption.toString(), uid!!, firebaseAuth.currentUser.toString())
+            addPost(title.toString(), caption.toString(), uid!!, emailUser.toString())
         }
 
     }
@@ -83,10 +86,9 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
     private fun addPost(title: String, caption: String, uid: String, users: String){
-        dbRef = FirebaseDatabase.getInstance().getReference("Posts")
-        dbRef.child(uid).setValue(Post(title, caption, users))
+        dbRef = Firebase.database.reference
+        dbRef.child("Posts").child(uid).setValue(Post(title, caption, users))
         uploadImage()
-
     }
 
     private fun uploadImage() {
@@ -95,6 +97,7 @@ class CreatePostActivity : AppCompatActivity() {
         Log.i("srRef", srRef.toString())
         srRef.putFile(passedImage!!).addOnSuccessListener {
             Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ForumActivity::class.java))
         }.addOnFailureListener { e->
             Toast.makeText(this, "Update failed due to ${e.message}", Toast.LENGTH_SHORT).show()
         }
