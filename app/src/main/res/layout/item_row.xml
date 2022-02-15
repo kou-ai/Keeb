@@ -23,12 +23,14 @@
         <TextView
             android:layout_marginLeft="2dp"
             android:id = "@+id/tv_email"
+            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"/>
 
         <TextView
             android:id="@+id/postTitle"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
@@ -37,6 +39,7 @@
 
         <TextView
             android:id="@+id/postCaption"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Caption"

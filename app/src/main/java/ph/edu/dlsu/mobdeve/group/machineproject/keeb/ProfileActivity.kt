@@ -33,7 +33,6 @@ class   ProfileActivity : Fragment() {
             val btnEnd: Button = binding.buttonLogout
             val firebaseUser = firebaseAuth.currentUser?.email
             val profileUser: TextView = binding.profileUsername
-            profileUser.text = firebaseUser.toString()
 
             // actionBar = requireActivity().actionBar!!
             // actionBar.title = "Profile"

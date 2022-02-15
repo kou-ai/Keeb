@@ -23,7 +23,7 @@ import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 class ForumActivity : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var dbRef: DatabaseReference
-    private lateinit var dataSnapshot: DataSnapshot
+    lateinit private var dataSnapshot: DataSnapshot
     private var _binding: FragmentForumBinding? = null
     var itemAdapter: ItemAdapter? = null
     var postList = ArrayList<Post>()
@@ -39,9 +39,10 @@ class ForumActivity : Fragment() {
         _binding = FragmentForumBinding.inflate(inflater, container, false)
 
         val btn_createPost: Button = binding.btnCreatePost
+        firebaseAuth = FirebaseAuth.getInstance()
         dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("post")
-        val size = dataSnapshot.getChildrenCount()
-        Log.i("children count", size.toString())
+        // val size = dataSnapshot.getChildrenCount()
+        // Log.i("children count", size.toString())
 
 
         if (dbRef != null) {
@@ -62,20 +63,30 @@ class ForumActivity : Fragment() {
     }
 
     private fun readPosts (dbRef: DatabaseReference){
-        val postId = dbRef.database.getReference("postId")
-        dbRef.child(postId.toString()).get().addOnSuccessListener {
+        // val postId = dbRef.child("1")
+        dbRef.child("1").get().addOnSuccessListener {
             if (it.exists()){
-                val email = it.child("postUser")
-                val title = it.child("title")
-                val uid = it.child("uid")
-                val caption = it.child("caption")
+                val email = it.child("postUser").value.toString()
+                val title = it.child("title").value.toString()
+                val uid = it.child("uid").value.toString()
+                val caption = it.child("caption").value.toString()
                 Toast.makeText(context, "Data read", Toast.LENGTH_SHORT).show()
-
-                Post(email.toString(), title.toString(), uid.toString(), caption.toString())
-
-
-
-
+                postList.clear()
+                postList.add(Post(title, caption, email, uid))
+                Log.i("email", email)
+                Log.i("title", title)
+                Log.i("uid", uid)
+                Log.i("caption", caption)
+                if (postList != null) {
+                    Log.i("post list not null", postList.toString())
+                    Log.i("title", postList[0].title.toString())
+                    Log.i("email", postList[0].postUser.toString())
+                    Log.i("caption", postList[0].caption.toString())
+                    Log.i("uid", postList[0].uid.toString())
+                }
+                else {
+                    Log.i("post list is null", postList.toString())
+                }
             } else {
                 Toast.makeText(context, "Data not read.", Toast.LENGTH_SHORT).show()
             }

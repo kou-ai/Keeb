@@ -34,6 +34,11 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
     }
 
     /**
+     * Gets the number of items in the list
+     */
+    override fun getItemCount() = postList.size
+
+    /**
      * Binds each item in the ArrayList to a view
      *
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -43,6 +48,7 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
      * of the given type. You can either create a new View manually or inflate it from an XML
      * layout file.
      */
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindPost(postList[position])
 
@@ -66,14 +72,6 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
 
 
     }
-
-    /**
-     * Gets the number of items in the list
-     */
-    override fun getItemCount(): Int {
-        return postList.size
-    }
-
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
