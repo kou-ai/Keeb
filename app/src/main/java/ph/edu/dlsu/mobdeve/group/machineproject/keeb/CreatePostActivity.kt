@@ -68,7 +68,9 @@ class CreatePostActivity : AppCompatActivity() {
         }
 
         publishbtn!!.setOnClickListener {
-            addPost(title.toString(), caption.toString(), uid!!, emailUser.toString())
+            val postCap = caption?.text.toString()
+            val postTitle = title?.text.toString()
+            addPost( postCap, postTitle, uid!!, emailUser.toString())
         }
 
     }
@@ -87,7 +89,7 @@ class CreatePostActivity : AppCompatActivity() {
 
     private fun addPost(title: String, caption: String, uid: String, users: String){
         dbRef = FirebaseDatabase.getInstance().getReference()
-        dbRef.child("posts").child(uid).setValue(Post(title, caption, users))
+        dbRef.child("post").child(uid).setValue(Post(title, caption, users))
         uploadImage()
     }
 
