@@ -88,7 +88,7 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
     private fun addPost(title: String, caption: String, uid: String, users: String){
-        dbRef = FirebaseDatabase.getInstance().getReference()
+        dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
         dbRef.child("post").child(uid).setValue(Post(title, caption, users))
         uploadImage()
     }
