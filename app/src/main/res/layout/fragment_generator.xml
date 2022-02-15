@@ -19,6 +19,7 @@
 
     <TextView
         android:id="@+id/tv_switches"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
@@ -27,6 +28,7 @@
 
     <TextView
         android:id="@+id/tv_layout"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -35,29 +37,12 @@
 
     <TextView
         android:id="@+id/tv_kprofile"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"
         android:gravity="center"
         android:text="Keycaps" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_marginLeft="30dp"
-            android:text="Price Breakdown: "
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </TextView>
-        <TextView
-            android:layout_marginLeft="190dp"
-            android:text="0 php"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </TextView>
-    </LinearLayout>
 
     <Button
         android:id="@+id/btn_generate"
