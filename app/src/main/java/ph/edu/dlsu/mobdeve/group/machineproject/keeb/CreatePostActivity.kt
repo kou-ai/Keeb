@@ -86,8 +86,8 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
     private fun addPost(title: String, caption: String, uid: String, users: String){
-        dbRef = Firebase.database.reference
-        dbRef.child("Posts").child(uid).setValue(Post(title, caption, users))
+        dbRef = FirebaseDatabase.getInstance().getReference()
+        dbRef.child("posts").child(uid).setValue(Post(title, caption, users))
         uploadImage()
     }
 
@@ -97,7 +97,6 @@ class CreatePostActivity : AppCompatActivity() {
         Log.i("srRef", srRef.toString())
         srRef.putFile(passedImage!!).addOnSuccessListener {
             Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, ForumActivity::class.java))
         }.addOnFailureListener { e->
             Toast.makeText(this, "Update failed due to ${e.message}", Toast.LENGTH_SHORT).show()
         }
