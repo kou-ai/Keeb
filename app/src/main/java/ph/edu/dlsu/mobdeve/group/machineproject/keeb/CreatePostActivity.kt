@@ -72,7 +72,7 @@ class CreatePostActivity : AppCompatActivity() {
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
             postNum += 1
-            addPost( postCap, postTitle, uid!!, emailUser.toString(), postNum)
+            addPost( postTitle, postCap, uid!!, emailUser.toString(), postNum)
         }
 
     }
@@ -93,6 +93,8 @@ class CreatePostActivity : AppCompatActivity() {
         dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
         dbRef.child("post").child(postNum.toString()).setValue(Post(title, caption, users, uid))
         uploadImage()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun uploadImage() {
