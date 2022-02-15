@@ -38,6 +38,7 @@ class CreatePostActivity : AppCompatActivity() {
     var publishbtn: Button? = null
     var title: EditText? = null
     var caption: EditText? = null
+    var postNum: Int = 0
     private val REQUEST_CODE = 13
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +71,8 @@ class CreatePostActivity : AppCompatActivity() {
         publishbtn!!.setOnClickListener {
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
-            addPost( postCap, postTitle, uid!!, emailUser.toString())
+            postNum += 1
+            addPost( postCap, postTitle, uid!!, emailUser.toString(), postNum)
         }
 
     }
@@ -87,9 +89,9 @@ class CreatePostActivity : AppCompatActivity() {
         startActivityForResult(intent, IMAGE_CODE)
     }
 
-    private fun addPost(title: String, caption: String, uid: String, users: String){
+    private fun addPost(title: String, caption: String, uid: String, users: String, postNum: Int){
         dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
-        dbRef.child("post").child(uid).setValue(Post(title, caption, users))
+        dbRef.child("post").child(postNum.toString()).setValue(Post(title, caption, users, uid))
         uploadImage()
     }
 
