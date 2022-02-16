@@ -27,15 +27,10 @@ class ItemAdapter(private var context: Context, private var postList: ArrayList<
      * {@link ViewHolder} and initializes some private fields to be used by RecyclerView.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(context), parent, false)
-        context = parent.context
+        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        context = recyclerView.context
-    }
 
     /**
      * Gets the number of items in the list
