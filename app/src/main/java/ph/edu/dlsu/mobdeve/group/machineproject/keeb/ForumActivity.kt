@@ -36,7 +36,7 @@ class ForumActivity : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentForumBinding.inflate(inflater, container, false)
+        _binding = FragmentForumBinding.inflate(inflater, container, true)
 
         val btn_createPost: Button = binding.btnCreatePost
         firebaseAuth = FirebaseAuth.getInstance()
@@ -53,8 +53,8 @@ class ForumActivity : Fragment() {
 
 
         itemAdapter = ItemAdapter(requireActivity().applicationContext, postList)
-        _binding!!.forumPosts.layoutManager = LinearLayoutManager(requireActivity().applicationContext, LinearLayoutManager.VERTICAL, false)
-        _binding!!.forumPosts.adapter = itemAdapter
+        binding.forumPosts.layoutManager = LinearLayoutManager(requireActivity().applicationContext, LinearLayoutManager.VERTICAL, false)
+        binding.forumPosts.adapter = itemAdapter
 
 
 
