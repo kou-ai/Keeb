@@ -27,7 +27,7 @@ class ItemAdapter(private var context: Context, private var postList: ArrayList<
      * {@link ViewHolder} and initializes some private fields to be used by RecyclerView.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(context), parent, false)
         context = parent.context
         return ViewHolder(itemBinding)
     }
@@ -54,26 +54,12 @@ class ItemAdapter(private var context: Context, private var postList: ArrayList<
      */
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val context = holder.itemView.context
-        holder.bindPost(postList[position])
+        val context = postList[position]
 
-        /*holder.tvName.toString() = item.name
-        holder.tvEmail.toString() = item.email */
+        holder.email.text = context.postUser
+        holder.caption.text = context.caption
+        holder.title.text = context.title
 
-        // Updating the background color according to the odd/even positions in list.
-        /*
-        if (position % 2 == 0) {
-            holder.llMain.setBackgroundColor(
-                ContextCompat.getColor(
-                    context,
-                    R.color.purple_200
-                )
-            )
-        } else {
-            holder.llMain.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
-        }
-
-         */
 
 
     }
@@ -84,12 +70,10 @@ class ItemAdapter(private var context: Context, private var postList: ArrayList<
     class ViewHolder(private val itemBinding: ItemRowBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         // Holds the TextView that will add each item to
         // need i-link to firebase users
+        var email = itemBinding.tvEmail
+        var caption = itemBinding.postCaption
+        var title = itemBinding.postTitle
 
-        fun bindPost(post: Post) {
-            itemBinding.tvEmail.text = post.postUser
-            itemBinding.postCaption.text = post.caption
-            itemBinding.postTitle.text = post.title
-        }
 
         //val llMain = view // di ko gets para san 'to
         // var tvName = view

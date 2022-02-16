@@ -51,9 +51,13 @@ class ForumActivity : Fragment() {
             Toast.makeText(context, "Account successfully created, please log in.", Toast.LENGTH_SHORT).show()
         }
 
+
         itemAdapter = ItemAdapter(requireActivity().applicationContext, postList)
         _binding!!.forumPosts.layoutManager = LinearLayoutManager(requireActivity().applicationContext, LinearLayoutManager.VERTICAL, false)
         _binding!!.forumPosts.adapter = itemAdapter
+
+
+
 
         btn_createPost.setOnClickListener {
             startActivity(Intent(activity?.applicationContext, CreatePostActivity::class.java))
@@ -73,7 +77,19 @@ class ForumActivity : Fragment() {
                 Toast.makeText(context, "Data read", Toast.LENGTH_SHORT).show()
                 postList.clear()
                 postList.add(Post(title, caption, email, uid))
-                Log.i("email", email)
+
+            } else {
+                Toast.makeText(context, "Data not read.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+
+
+
+
+
+/* Log.i("email", email)
                 Log.i("title", title)
                 Log.i("uid", uid)
                 Log.i("caption", caption)
@@ -87,9 +103,5 @@ class ForumActivity : Fragment() {
                 else {
                     Log.i("post list is null", postList.toString())
                 }
-            } else {
-                Toast.makeText(context, "Data not read.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-}
+
+ */

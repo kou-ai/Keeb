@@ -7,8 +7,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityMainBinding
+import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +35,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-
-
 
 
     }
