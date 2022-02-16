@@ -2,12 +2,10 @@ package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ItemRowBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
@@ -19,7 +17,7 @@ var ivEdit: ImageView? = null
 var ivDelete: ImageView? = null
 
 
-class ItemAdapter(private val context: Context, private var postList: ArrayList<Post>) :
+class ItemAdapter(private var context: Context, private var postList: ArrayList<Post>) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     /**
@@ -30,7 +28,13 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        context = parent.context
         return ViewHolder(itemBinding)
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
     }
 
     /**
@@ -50,6 +54,7 @@ class ItemAdapter(private val context: Context, private var postList: ArrayList<
      */
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context = holder.itemView.context
         holder.bindPost(postList[position])
 
         /*holder.tvName.toString() = item.name
