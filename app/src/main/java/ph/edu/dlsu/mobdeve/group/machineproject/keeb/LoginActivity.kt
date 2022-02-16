@@ -5,21 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityLoginBinding
 
-
-var et_username: EditText? = null
-var et_password: EditText? = null
-var btn_submit: Button? = null
-
+// Responsible for verifying user state and login
 class LoginActivity : AppCompatActivity() {
 
     var binding: ActivityLoginBinding? = null
@@ -46,19 +40,19 @@ class LoginActivity : AppCompatActivity() {
         progressDialog.setMessage("Logging in")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance() // First instance of authentication
         checkUser()
 
-        btn_reg!!.setOnClickListener{
+        btn_reg!!.setOnClickListener{ // Switches to register file
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         btn_submit!!.setOnClickListener{
-            validateData()
+            validateData() // Checks if the data submitted is correct
         }
     }
 
-    private fun validateData() {
+    private fun validateData() { // Checks for wrong formatting, validation
         email = binding!!.etEmail.text.toString().trim()
         password = binding!!.etPassword.text.toString().trim()
 
@@ -69,15 +63,15 @@ class LoginActivity : AppCompatActivity() {
             binding!!.etPassword.error = "Please enter password"
         }
         else
-            firebaseLogin()
+            firebaseLogin() // Officially logs in the credentials
     }
 
     private fun firebaseLogin() {
         progressDialog.show()
-        firebaseAuth.signInWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email, password) // Predefined function to add to the authentication of Firebase
             .addOnSuccessListener {
                 progressDialog.dismiss()
-                val firebaseUser = firebaseAuth.currentUser
+                val firebaseUser = firebaseAuth.currentUser // Passes constant values
                 val email = firebaseUser!!.email
                 Toast.makeText(this, "Logged in as $email", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
@@ -88,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun checkUser(){
+    private fun checkUser(){ // Checks state of the application if one is logged to redirect to page
         val firebaseuser = firebaseAuth.currentUser
         if (firebaseuser != null){
             startActivity(Intent(this, MainActivity::class.java))

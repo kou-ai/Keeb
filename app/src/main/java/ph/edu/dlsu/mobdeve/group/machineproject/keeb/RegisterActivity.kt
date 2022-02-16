@@ -11,11 +11,11 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityRegisterBinding
 
-class RegisterActivity : AppCompatActivity() {
 
+// Responsible for adding new users to the firebase authentication
+class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var actionBar: ActionBar
     private lateinit var progressDialog: ProgressDialog
@@ -46,18 +46,16 @@ class RegisterActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-
-
         btn_reg!!.setOnClickListener {
-            validateData()
+            validateData() // same behavior as login validator
         }
 
         btn_login!!.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java)) // redirects to login page
         }
     }
 
-    private fun validateData() {
+    private fun validateData() { // Checks the appropriate error handling within the register module
         email = binding.etEmail.text.toString().trim()
         password = binding.etPassword.text.toString().trim()
 
@@ -75,17 +73,14 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseSignUp() {
+    private fun firebaseSignUp() { // Function responsible for adding the user to the authentication log of firebase
         progressDialog.show()
-
-
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
                 Toast.makeText(this, "Account successfully created, please log in.", Toast.LENGTH_SHORT).show()
-
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
@@ -93,10 +88,5 @@ class RegisterActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 Toast.makeText(this, "sign up failed due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
     }
 }

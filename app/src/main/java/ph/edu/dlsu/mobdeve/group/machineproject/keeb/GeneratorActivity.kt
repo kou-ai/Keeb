@@ -8,12 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentGeneratorBinding
@@ -23,10 +20,10 @@ import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Keycaps
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Layout
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Switches
 
-
+// Responsible for the randomizer of the keyboards with corresponding data
 class GeneratorActivity : Fragment() {
 
-
+    // Initialize the necessary variables
     var switchList = ArrayList<Switches?>()
     var layoutList = ArrayList<Layout?>()
     var keyList = ArrayList<Keycaps?>()
@@ -34,14 +31,9 @@ class GeneratorActivity : Fragment() {
     private var _binding: FragmentGeneratorBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var storageRef: StorageReference
+    // Create imagelist for calling the values
     private val imageList = intArrayOf(R.drawable.keeb0, R.drawable.keeb1, R.drawable.keeb2, R.drawable.keeb3, R.drawable.keeb4, R.drawable.keeb5, R.drawable.keeb6, R.drawable.keeb7)
-
-
-
-
-        // This property is only valid between onCreateView and
-        // onDestroyView.
-        private val binding get() = _binding!!
+    private val binding get() = _binding!!
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -49,35 +41,35 @@ class GeneratorActivity : Fragment() {
             savedInstanceState: Bundle?
         ): View {
 
-            firebaseAuth = FirebaseAuth.getInstance()
-            storageRef = Firebase.storage.reference
+            firebaseAuth = FirebaseAuth.getInstance() // First instance of authentication
+            storageRef = Firebase.storage.reference // References the storage to be used
 
             _binding = FragmentGeneratorBinding.inflate(inflater, container, false)
 
-            populateList()
-            val btn_generate: Button = binding.btnGenerate
+            populateList() // Adds the values to arraylist
+            val btn_generate: Button = binding.btnGenerate // initializes the elements to be used
             val tv_switches: TextView = binding.tvSwitches
             val tv_layout: TextView = binding.tvLayout
             val tv_kprofile: TextView = binding.tvKprofile
             val img_gen: ImageView = binding.generatedImage
 
-            btn_generate.setOnClickListener {
-                val rnds = (0..1).random()
+            btn_generate.setOnClickListener { // OnClick to randomize the lists within the database
+                val rnds = (0..1).random() // randomizes the index
                 val rnds2 = (0..1).random()
                 val rnds3 =  (0..1).random()
                 val final = switchList[rnds]!!.switches
                 val final2 = layoutList[rnds2]!!.layout
                 val final3 = keyList[rnds3]!!.keycap
+
+                // String literal to be used as condition for permutations
                 val combinations: String = rnds.toString().plus(rnds2.toString()).plus(rnds3.toString())
 
-
-                Log.i("random", "$rnds")
-                Log.i("final random", final)
 
                 tv_switches.text = final
                 tv_layout.text = final2
                 tv_kprofile.text= final3
 
+                // Condition to use specific image with the randomized items
                 when (combinations){
                     "000" -> img_gen.setImageResource(imageList[0])
                     "111" -> img_gen.setImageResource(imageList[1])
@@ -88,17 +80,12 @@ class GeneratorActivity : Fragment() {
                     "011" -> img_gen.setImageResource(imageList[6])
                     "101" -> img_gen.setImageResource(imageList[7])
                 }
-
-                Log.i(
-                    "Generator",
-                    "Keyboard: $rnds"
-                )
             }
             return binding.root
         }
 
 
-
+    // Passes called data to local model 
     private fun populateList(){
         switchList = KeebDAO.getSwitches()
         layoutList = KeebDAO.getLayout()

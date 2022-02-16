@@ -12,14 +12,12 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentProfileBinding
 
+// Responsible for storing the user data
 class   ProfileActivity : Fragment() {
 
         private var _binding: FragmentProfileBinding? = null
         private lateinit var firebaseAuth: FirebaseAuth
         private lateinit var actionBar: ActionBar
-
-        // This property is only valid between onCreateView and
-        // onDestroyView.
         private val binding get() = _binding!!
 
         override fun onCreateView(
@@ -31,18 +29,11 @@ class   ProfileActivity : Fragment() {
             _binding = FragmentProfileBinding.inflate(inflater, container, false)
             firebaseAuth = FirebaseAuth.getInstance()
             val btnEnd: Button = binding.buttonLogout
-            val firebaseUser = firebaseAuth.currentUser?.email
-            val profileUser: TextView = binding.profileUsername
 
-            // actionBar = requireActivity().actionBar!!
-            // actionBar.title = "Profile"
+            firebaseAuth = FirebaseAuth.getInstance() // first instance of authentication
+            checkUser() // checks if user is signed in and which user is signed in
 
-
-
-            firebaseAuth = FirebaseAuth.getInstance()
-            checkUser()
-
-            btnEnd.setOnClickListener {
+            btnEnd.setOnClickListener { // Logout button to end session
                 firebaseAuth.signOut()
                 checkUser()
             }
@@ -50,7 +41,7 @@ class   ProfileActivity : Fragment() {
             return binding.root
         }
 
-    private fun checkUser() {
+    private fun checkUser() { // Checks for the state of the app, if logged in, use the details, if not, redirect
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null){
             val email = firebaseUser.email

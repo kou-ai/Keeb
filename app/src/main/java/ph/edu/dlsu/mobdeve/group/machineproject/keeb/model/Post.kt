@@ -1,7 +1,6 @@
 package ph.edu.dlsu.mobdeve.group.machineproject.keeb.model
 
-import android.media.Image
-import android.net.Uri
+// Responsible for storing the local data to be passed to firebase and vise versa
 
 class Post {
     var title: String? = null

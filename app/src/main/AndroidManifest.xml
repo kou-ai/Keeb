@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keeb">
         <activity
-            android:name=".ViewPostActivity"
-            android:exported="false" />
-        <activity
             android:name=".CreatePostActivity"
             android:exported="false" />
         <activity

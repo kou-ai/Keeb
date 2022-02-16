@@ -7,11 +7,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityMainBinding
-import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 
+
+// Main page responsible for navigation
 class MainActivity : AppCompatActivity() {
 
     var binding: ActivityMainBinding? = null
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
 
-        val appBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration( // Controls all fragments in the application
             setOf(
                 R.id.forumFragment,
                 R.id.creatorFragment,
@@ -35,7 +35,5 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-
     }
 }

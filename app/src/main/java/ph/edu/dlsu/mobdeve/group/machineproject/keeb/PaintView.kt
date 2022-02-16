@@ -12,12 +12,13 @@ import android.view.ViewGroup
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.CreatorActivity.Companion.paintBrush
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.CreatorActivity.Companion.path
 
-class
-PaintView : View{
+
+// Responsible to be the container for all drawings for Canvas API
+class PaintView : View{
 
     var params : ViewGroup.LayoutParams? = null
 
-    companion object {
+    companion object { // Initialize object to be used
         var pathList = ArrayList<Path>()
         var colorList = ArrayList<Int>()
         var currentBrush = Color.BLACK
@@ -33,7 +34,7 @@ PaintView : View{
         init()
     }
 
-    private fun init(){
+    private fun init(){ // Initialized values of the object
         paintBrush.isAntiAlias = true
         paintBrush.color = currentBrush
         paintBrush.style = Paint.Style.STROKE
@@ -43,16 +44,16 @@ PaintView : View{
         params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean { // Function to listen for fingerstrokes within the application
         var x = event.x
         var y = event.y
 
-        when(event.action){
+        when(event.action){ // Moves to path within the finger
             MotionEvent.ACTION_DOWN -> {
                 path.moveTo(x,y)
                 return true
             }
-            MotionEvent.ACTION_MOVE ->{
+            MotionEvent.ACTION_MOVE ->{ // Adds to the path
                 path.lineTo(x,y)
                 pathList.add(path)
                 colorList.add(currentBrush)
@@ -63,7 +64,7 @@ PaintView : View{
         return false
     }
 
-    override fun onDraw(canvas: Canvas) {
+    override fun onDraw(canvas: Canvas) { // Adds the values or pixels to the path made by the user
         for(i in pathList.indices){
             paintBrush.color = colorList[i]
             canvas.drawPath(pathList[i], paintBrush)
