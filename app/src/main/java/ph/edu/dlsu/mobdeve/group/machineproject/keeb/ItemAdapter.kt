@@ -31,8 +31,7 @@ class ItemAdapter(private var postList: ArrayList<Post>) :
 
         if (context.imgString == null){
             holder.img.setImageResource(R.mipmap.ic_launcher)
-        }
-        holder.img.setImageURI(context.imgString!!.toUri())
+        } else holder.img.setImageURI(context.imgString!!.toUri())
 
     }
 

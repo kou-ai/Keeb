@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -30,7 +31,7 @@ class CreatePostActivity : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var srRef: StorageReference
     var picture: ImageView? = null
-    var passedImage: Uri? = null
+    var passedImage: Uri? = (R.mipmap.ic_launcher).toString().toUri()
     var uploadbtn: Button? = null
     var publishbtn: Button? = null
     var title: EditText? = null
@@ -62,6 +63,7 @@ class CreatePostActivity : AppCompatActivity() {
 
         publishbtn!!.setOnClickListener {
             val imageString = passedImage.toString()// Passes the inserted values to the local model to be added to the DB
+
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
             val post = Post(postTitle, postCap, emailUser!!, uid!!, imageString)
