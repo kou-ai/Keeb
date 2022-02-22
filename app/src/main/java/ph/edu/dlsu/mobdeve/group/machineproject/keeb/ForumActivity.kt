@@ -38,8 +38,6 @@ class ForumActivity : Fragment() {
         readPosts() // function to read data from Firebase back to local application
 
         // Series of code to call the Adapter file for manipulating the recycler view
-
-
         // Create own post to be submitted to the database
         btnCreatePost.setOnClickListener {
             startActivity(Intent(activity?.applicationContext, CreatePostActivity::class.java))
