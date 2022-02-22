@@ -31,7 +31,7 @@ class CreatePostActivity : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var srRef: StorageReference
     var picture: ImageView? = null
-    var passedImage: Uri? = (R.mipmap.ic_launcher).toString().toUri()
+    var passedImage: Uri? = "content://media/external/images/media/6871".toUri()
     var uploadbtn: Button? = null
     var publishbtn: Button? = null
     var title: EditText? = null
@@ -63,7 +63,6 @@ class CreatePostActivity : AppCompatActivity() {
 
         publishbtn!!.setOnClickListener {
             val imageString = passedImage.toString()// Passes the inserted values to the local model to be added to the DB
-
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
             val post = Post(postTitle, postCap, emailUser!!, uid!!, imageString)
