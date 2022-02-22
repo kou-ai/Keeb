@@ -33,10 +33,11 @@ class ForumActivity : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentForumBinding.inflate(inflater, container, true)
+        _binding = FragmentForumBinding.inflate(inflater, container, false)
 
         val btnCreatePost: Button = binding.btnCreatePost
         firebaseAuth = FirebaseAuth.getInstance()
+
 
         readPosts() // function to read data from Firebase back to local application
 
@@ -63,7 +64,7 @@ class ForumActivity : Fragment() {
                     binding.forumPosts.layoutManager = LinearLayoutManager(
                         requireActivity().applicationContext,
                         LinearLayoutManager.VERTICAL,
-                        false
+                        true
                     )
                     binding.forumPosts.adapter = itemAdapter
                     }

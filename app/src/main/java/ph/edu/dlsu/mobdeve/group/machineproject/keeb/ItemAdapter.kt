@@ -28,6 +28,10 @@ class ItemAdapter(private var postList: ArrayList<Post>) :
         holder.email.text = context.postUser
         holder.caption.text = context.caption
         holder.title.text = context.title
+
+        if (context.imgString == null){
+            holder.img.setImageResource(R.mipmap.ic_launcher)
+        }
         holder.img.setImageURI(context.imgString!!.toUri())
 
     }

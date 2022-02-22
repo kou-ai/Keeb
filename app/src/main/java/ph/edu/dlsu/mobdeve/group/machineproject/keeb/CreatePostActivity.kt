@@ -64,15 +64,15 @@ class CreatePostActivity : AppCompatActivity() {
             val imageString = passedImage.toString()// Passes the inserted values to the local model to be added to the DB
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
-            val Post = Post(postTitle, postCap, emailUser!!, uid!!, imageString)
-            addPost(Post)
+            val post = Post(postTitle, postCap, emailUser!!, uid!!, imageString)
+            addPost(post)
         }
 
     }
 
     companion object { // Constants for CODE validation
-        private val PERMISSION_CODE = 1001;
-        private val IMAGE_CODE = 1001;
+        private val PERMISSION_CODE = 1001
+        private val IMAGE_CODE = 1001
     }
 
     private fun chooseImageGallery() { // Converts ACTION of choosing image to URI to be used
