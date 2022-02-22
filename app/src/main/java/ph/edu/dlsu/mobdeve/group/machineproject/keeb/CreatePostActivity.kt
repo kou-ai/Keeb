@@ -35,7 +35,6 @@ class CreatePostActivity : AppCompatActivity() {
     var publishbtn: Button? = null
     var title: EditText? = null
     var caption: EditText? = null
-    var postNum: Int = 0
     private val REQUEST_CODE = 13
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +50,6 @@ class CreatePostActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance() // Instance for firebase authentication
         val uid = firebaseAuth.currentUser?.uid // Catches the uid of current logged in user
         val emailUser = firebaseAuth.currentUser?.email
-        Log.i("postCount Init", postNum.toString())
 
         uploadbtn!!.setOnClickListener { // Asks user for image within the gallery to be uploaded by URI
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
@@ -65,10 +63,8 @@ class CreatePostActivity : AppCompatActivity() {
         publishbtn!!.setOnClickListener { // Passes the inserted values to the local model to be added to the DB
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
-            Log.i("postCount current", postNum.toString())
-            postNum += 1
             val Post = Post(postTitle, postCap, uid!!, emailUser!!)
-            addPost(Post, postNum)
+            addPost(Post)
         }
 
     }
@@ -84,9 +80,9 @@ class CreatePostActivity : AppCompatActivity() {
         startActivityForResult(intent, IMAGE_CODE) // Start activity with acquired result
     }
 
-    private fun addPost(post: Post, count: Int){ // Adds the inserted data to the FIREBASE realtime DB
+    private fun addPost(post: Post){ // Adds the inserted data to the FIREBASE realtime DB
         dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("post") // Link of project DB
-        dbRef.child(count.toString()).setValue(post).addOnSuccessListener {
+        dbRef.child(post.title!!).setValue(post).addOnSuccessListener {
             Toast.makeText(this, "Successfully Saved", Toast.LENGTH_SHORT).show()
         }
         uploadImage() // Separate function for adding the image to the Storage
