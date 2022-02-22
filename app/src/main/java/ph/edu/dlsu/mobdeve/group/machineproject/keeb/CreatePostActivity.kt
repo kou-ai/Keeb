@@ -82,7 +82,8 @@ class CreatePostActivity : AppCompatActivity() {
 
     private fun addPost(post: Post){ // Adds the inserted data to the FIREBASE realtime DB
         dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("post") // Link of project DB
-        dbRef.child(post.title!!).setValue(post).addOnSuccessListener {
+        val key = dbRef.push().key
+        dbRef.child(key!!).setValue(post).addOnSuccessListener {
             Toast.makeText(this, "Successfully Saved", Toast.LENGTH_SHORT).show()
         }
         uploadImage() // Separate function for adding the image to the Storage
