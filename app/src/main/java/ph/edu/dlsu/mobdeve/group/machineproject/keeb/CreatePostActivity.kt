@@ -60,10 +60,11 @@ class CreatePostActivity : AppCompatActivity() {
             }
         }
 
-        publishbtn!!.setOnClickListener { // Passes the inserted values to the local model to be added to the DB
+        publishbtn!!.setOnClickListener {
+            val imageString = passedImage.toString()// Passes the inserted values to the local model to be added to the DB
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
-            val Post = Post(postTitle, postCap, emailUser!!, uid!!)
+            val Post = Post(postTitle, postCap, emailUser!!, uid!!, imageString)
             addPost(Post)
         }
 
