@@ -31,7 +31,7 @@ class CreatePostActivity : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var srRef: StorageReference
     var picture: ImageView? = null
-    var passedImage: Uri? = Uri.parse("gs://fir-login-signup-862d3.appspot.com/Keyboards/5.png")
+    var passedImage: Uri? = Uri.parse("android.resource://ph.edu.dlsu.mobdeve.group.machineproject.keeb/drawable/testing")
     var uploadbtn: Button? = null
     var publishbtn: Button? = null
     var title: EditText? = null
