@@ -86,19 +86,17 @@ class CreatePostActivity : AppCompatActivity() {
         dbRef.child(key!!).setValue(post).addOnSuccessListener {
             Toast.makeText(this, "Successfully Saved", Toast.LENGTH_SHORT).show()
         }
-        uploadImage() // Separate function for adding the image to the Storage
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
 
-    private fun uploadImage() { // Passes the image to the storage of Firebase to avoid heavy loads
         passedImage // URI from previous function
-        srRef = FirebaseStorage.getInstance().getReference("Posts/"+firebaseAuth.currentUser?.uid) // Link of project storage
+        srRef = FirebaseStorage.getInstance().getReference("Posts/"+key) // Link of project storage
         srRef.putFile(passedImage!!).addOnSuccessListener { // Places file into the storage
             Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener { e->
             Toast.makeText(this, "Update failed due to ${e.message}", Toast.LENGTH_SHORT).show()
         }
+
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun onRequestPermissionsResult( // Checker for phone or emulator permissions

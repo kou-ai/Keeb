@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.FragmentForumBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 
@@ -20,6 +22,7 @@ import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 class ForumActivity : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var dbRef: DatabaseReference
+    private lateinit var sRef: StorageReference
     private var _binding: FragmentForumBinding? = null
     var itemAdapter: ItemAdapter? = null
     var postList = ArrayList<Post>()
