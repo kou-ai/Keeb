@@ -1,19 +1,19 @@
 package ph.edu.dlsu.mobdeve.group.machineproject.keeb
 
-import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ItemRowBinding
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.model.Post
 
-class ItemAdapter(private var context: Context, private var postList: ArrayList<Post>) :
+class ItemAdapter(private var postList: ArrayList<Post>) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     // Calls the context from the parent view
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(itemBinding)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_row, parent, false)
+        return ViewHolder(itemView)
     }
 
     // Gets the number of items in the list
@@ -30,12 +30,10 @@ class ItemAdapter(private var context: Context, private var postList: ArrayList<
     }
 
 
-
     // Initializes the elements from corresponding recycler view to be given data
-    class ViewHolder(private val itemBinding: ItemRowBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        var email = itemBinding.tvEmail
-        var caption = itemBinding.postCaption
-        var title = itemBinding.postTitle
-
+    class ViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val email: TextView = itemView.findViewById(R.id.tv_email)
+        val caption: TextView = itemView.findViewById(R.id.postCaption)
+        val title: TextView = itemView.findViewById(R.id.postTitle)
     }
 }

@@ -65,7 +65,7 @@ class CreatePostActivity : AppCompatActivity() {
             val postCap = caption?.text.toString()
             val postTitle = title?.text.toString()
             postNum += 1
-            addPost( postTitle, postCap, uid!!, emailUser.toString(), postNum)
+            addPost(postTitle, postCap, uid!!, emailUser.toString(), postNum)
         }
 
     }
@@ -82,7 +82,7 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
     private fun addPost(title: String, caption: String, uid: String, users: String, postNum: Int){ // Adds the inserted data to the FIREBASE realtime DB
-        dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference() // Link of project DB
+        dbRef = FirebaseDatabase.getInstance("https://fir-login-signup-862d3-default-rtdb.asia-southeast1.firebasedatabase.app/").reference // Link of project DB
         dbRef.child("post").child(postNum.toString()).setValue(Post(title, caption, users, uid))
         uploadImage() // Separate function for adding the image to the Storage
         startActivity(Intent(this, MainActivity::class.java))
