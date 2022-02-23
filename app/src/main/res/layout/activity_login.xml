@@ -24,35 +24,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="200dp"
         android:gravity="bottom"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
 
         <EditText
             android:id="@+id/et_email"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="Email"
             android:padding="10dp"
-            android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            />
 
         <EditText
             android:id="@+id/et_password"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_email" />
@@ -60,24 +61,12 @@
 
     <Button
         android:id="@+id/btn_submit"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="#583c2c"
         android:text="LOGIN"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/btn_register"
-        tools:layout_editor_absoluteX="0dp" />
-
-
-    <Button
-        android:id="@+id/btn_google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:backgroundTint="#583c2c"
-        android:text="GOOGLE LOGIN"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/btn_register"
         tools:layout_editor_absoluteX="0dp" />
 

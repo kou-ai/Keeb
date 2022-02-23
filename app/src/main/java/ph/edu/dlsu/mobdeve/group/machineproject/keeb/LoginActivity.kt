@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         btn_submit = findViewById(R.id.btn_submit)
         btn_reg = findViewById(R.id.btn_register)
 
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).requestIdToken(
             R.string.default_web_client_id.toString()
         ).requestEmail().build()
 
