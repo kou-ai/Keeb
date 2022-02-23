@@ -5,12 +5,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import ph.edu.dlsu.mobdeve.group.machineproject.keeb.databinding.ActivityLoginBinding
 
 // Responsible for verifying user state and login
@@ -21,9 +28,15 @@ class LoginActivity : AppCompatActivity() {
     var btn_reg: Button? = null
     private lateinit var actionBar: ActionBar
     private lateinit var progressDialog: ProgressDialog
+    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
     private var email = ""
     private var password = ""
+
+    private companion object {
+        private const val RC_SIGN_IN = 100
+        private const val TAG = "GOOGLE_SIGN_IN_TAG"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +48,12 @@ class LoginActivity : AppCompatActivity() {
         btn_submit = findViewById(R.id.btn_submit)
         btn_reg = findViewById(R.id.btn_register)
 
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).requestIdToken(
+            R.string.default_web_client_id.toString()
+        ).requestEmail().build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait")
         progressDialog.setMessage("Logging in")
@@ -42,6 +61,12 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance() // First instance of authentication
         checkUser()
+
+        binding!!.btnGoogle.setOnClickListener {
+            val intent = googleSignInClient.signInIntent
+            startActivityForResult(intent, RC_SIGN_IN)
+        }
+
 
         btn_reg!!.setOnClickListener{ // Switches to register file
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -51,6 +76,43 @@ class LoginActivity : AppCompatActivity() {
             validateData() // Checks if the data submitted is correct
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN){
+            val accountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = accountTask.getResult(ApiException::class.java)
+                firebaseAuthWithGoogleAccount(account)
+            } catch (e: Exception){
+                Log.d("Test", "test")
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogleAccount(account: GoogleSignInAccount){
+
+        val credential = GoogleAuthProvider.getCredential(account!!.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnSuccessListener { authResult ->
+
+                val firebaseUser = firebaseAuth.currentUser
+
+                val uid = firebaseUser!!.uid
+                val email = firebaseUser.email
+
+                if (authResult.additionalUserInfo!!.isNewUser){
+                    Toast.makeText(this, "Account Created...", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(this, "Logged in...", Toast.LENGTH_SHORT).show()
+                }
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+
+            }
+    }
+
 
     private fun validateData() { // Checks for wrong formatting, validation
         email = binding!!.etEmail.text.toString().trim()
