@@ -13,11 +13,11 @@
         android:id="@+id/forumPosts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_row"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_row" />
 
     <Button
         android:id="@+id/btn_createPost"
@@ -25,6 +25,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:text="Create a Post"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="#583c2c"/>
 
 </RelativeLayout>
