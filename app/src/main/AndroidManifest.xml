@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ph.edu.dlsu.mobdeve.group.machineproject.keeb">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="anndroid.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
